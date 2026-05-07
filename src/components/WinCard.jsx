@@ -38,14 +38,14 @@ function DotsMenu({ onEdit, onDelete, onClose }) {
   )
 }
 
-export function WinCard({ win, index, onStart, onComplete, onEdit, onDelete, onFocus }) {
+export function WinCard({ win, index, isActive, onStart, onComplete, onEdit, onDelete, onFocus }) {
   const [menuOpen, setMenuOpen] = useState(false)
 
   const numClass = NUMBER_COLORS[index] ?? NUMBER_COLORS[0]
 
   const cardClass = win.completed
     ? 'opacity-60 bg-stone-50'
-    : win.started
+    : isActive
     ? 'bg-white border-l-4 border-l-sage-400'
     : 'bg-white'
 
@@ -78,11 +78,19 @@ export function WinCard({ win, index, onStart, onComplete, onEdit, onDelete, onF
         {!win.completed && (
           <div className="flex items-center gap-2 flex-shrink-0">
             <button
-              onClick={() => { onStart(win.id); onFocus(win) }}
+              onClick={onStart}
               className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-sage-50 text-sage-700 text-xs font-medium hover:bg-sage-100 transition"
             >
               <span className="text-sage-500">▶</span>
               Start
+            </button>
+
+            <button
+              onClick={() => onComplete(win.id)}
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-stone-200 text-stone-400 text-xs font-medium hover:bg-stone-50 hover:text-stone-600 hover:border-stone-300 transition"
+            >
+              <span>✓</span>
+              Done
             </button>
 
             <div className="relative">

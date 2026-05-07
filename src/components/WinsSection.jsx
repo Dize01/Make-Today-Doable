@@ -3,8 +3,24 @@ import { WinCard, EmptyWinSlot } from './WinCard'
 import { AddWinModal } from './AddWinModal'
 
 export function WinsSection({ wins, startedCount, onStart, onComplete, onAdd, onEdit, onDelete, onFocus }) {
-  const [showModal, setShowModal] = useState(false)
-  const [editingWin, setEditingWin] = useState(null)
+  const [showModal,   setShowModal]   = useState(false)
+  const [editingWin,  setEditingWin]  = useState(null)
+  const [activeWinId, setActiveWinId] = useState(null)
+
+  // Default active: the explicit choice, or the first non-completed win
+  const resolvedActiveId = activeWinId ?? wins.find(w => !w.completed)?.id ?? null
+
+  function handleStart(win) {
+    setActiveWinId(win.id)
+    onStart(win.id)
+    onFocus(win)
+  }
+
+  function handleComplete(id) {
+    // If completing the active win, clear so next win becomes default
+    if (id === activeWinId) setActiveWinId(null)
+    onComplete(id)
+  }
 
   function handleAddClick() {
     if (wins.length >= 3) return
@@ -63,8 +79,9 @@ export function WinsSection({ wins, startedCount, onStart, onComplete, onAdd, on
                   key={win.id}
                   win={win}
                   index={i}
-                  onStart={onStart}
-                  onComplete={onComplete}
+                  isActive={win.id === resolvedActiveId}
+                  onStart={() => handleStart(win)}
+                  onComplete={handleComplete}
                   onEdit={handleEditClick}
                   onDelete={onDelete}
                   onFocus={onFocus}

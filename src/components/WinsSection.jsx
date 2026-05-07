@@ -37,7 +37,7 @@ export function WinsSection({ wins, startedCount, onStart, onComplete, onAdd, on
               <h2 className="font-semibold text-stone-800 text-base">Today's 3 Wins</h2>
               {wins.length > 0 && (
                 <span className="text-xs bg-sage-50 text-sage-600 border border-sage-100 px-2 py-0.5 rounded-full font-medium">
-                  {wins.length} of 3 planned
+                  {startedCount} of {wins.length} started
                 </span>
               )}
             </div>
@@ -52,13 +52,6 @@ export function WinsSection({ wins, startedCount, onStart, onComplete, onAdd, on
             </span>
           </div>
         </div>
-
-        {/* Empty state */}
-        {wins.length === 0 && (
-          <p className="text-sm text-stone-400 italic mb-3">
-            What would make today feel a little lighter?
-          </p>
-        )}
 
         {/* Win slots */}
         <div className="space-y-3">

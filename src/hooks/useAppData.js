@@ -17,28 +17,11 @@ const defaultState = () => ({
   wins:   [],
 })
 
-function isValidData(d) {
-  return (
-    d !== null &&
-    typeof d === 'object' &&
-    typeof d.date === 'string' &&
-    Array.isArray(d.wins) &&
-    (d.energy === null || typeof d.energy === 'string')
-  )
-}
-
 function load() {
   try {
     const raw = localStorage.getItem(STORAGE_KEY)
-    if (!raw) return null
-    const parsed = JSON.parse(raw)
-    if (!isValidData(parsed)) {
-      localStorage.removeItem(STORAGE_KEY)
-      return null
-    }
-    return parsed
+    return raw ? JSON.parse(raw) : null
   } catch {
-    localStorage.removeItem(STORAGE_KEY)
     return null
   }
 }

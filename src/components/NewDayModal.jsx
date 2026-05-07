@@ -1,6 +1,4 @@
-export function NewDayModal({ onStartFresh, onContinue, mode = 'auto' }) {
-  const isAuto = mode === 'auto'
-
+export function NewDayModal({ onStartFresh, onContinue }) {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/20 backdrop-blur-sm animate-fade-in">
       <div className="bg-white rounded-3xl shadow-card w-full max-w-sm p-8 text-center animate-slide-up">
@@ -15,35 +13,25 @@ export function NewDayModal({ onStartFresh, onContinue, mode = 'auto' }) {
             </svg>
           </div>
         </div>
-
-        {isAuto ? (
-          <>
-            <h2 className="text-lg font-semibold text-stone-800 mb-2">A new day is here.</h2>
-            <p className="text-sm text-stone-400 leading-relaxed mb-8">
-              Would you like a fresh start, or carry on from where you left off?
-            </p>
-          </>
-        ) : (
-          <>
-            <h2 className="text-lg font-semibold text-stone-800 mb-2">Start fresh for today?</h2>
-            <p className="text-sm text-stone-400 leading-relaxed mb-8">
-              This will clear your wins and reset your energy. No pressure either way.
-            </p>
-          </>
-        )}
+        <h2 className="text-lg font-semibold text-stone-800 mb-2">
+          A new day has arrived
+        </h2>
+        <p className="text-sm text-stone-400 leading-relaxed mb-8">
+          Would you like to start fresh today, or carry on from where you left off?
+        </p>
 
         <div className="flex flex-col gap-3">
           <button
             onClick={onStartFresh}
             className="w-full py-3.5 rounded-2xl bg-sage-500 text-white text-sm font-semibold hover:bg-sage-600 transition shadow-softer"
           >
-            {isAuto ? 'Fresh start' : 'Yes, start fresh'}
+            Start fresh 🌱
           </button>
           <button
             onClick={onContinue}
             className="w-full py-3.5 rounded-2xl border border-stone-200 text-stone-500 text-sm font-medium hover:bg-stone-50 transition"
           >
-            {isAuto ? 'Continue from yesterday' : 'Keep my wins'}
+            Continue yesterday
           </button>
         </div>
 

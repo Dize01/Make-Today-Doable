@@ -158,19 +158,14 @@ export default function App() {
               <OverwhelmedCard onBreak={() => setShowBreathing(true)} />
             </div>
 
-            {/* Encouragement strip — visible below lg */}
-            <div className="lg:hidden">
-              <YouGotThisButton />
-            </div>
-
             {/* Footer affirmation */}
             <p className="text-center text-xs text-stone-300 py-2">
               ⭐ Every small step forward counts. You're doing great. 💜
             </p>
           </main>
 
-          {/* Right sidebar — visible on lg+ */}
-          <aside className="hidden lg:flex flex-col gap-4 w-60 flex-shrink-0">
+          {/* Right sidebar */}
+          <aside className="hidden xl:flex flex-col gap-4 w-64 flex-shrink-0">
             <SmallStillCountsCard />
             <TipsCard />
             <YouGotThisButton />
@@ -180,12 +175,11 @@ export default function App() {
 
       {/* Modals / Overlays */}
       {showNewDayModal && !showNewDayConfirm && (
-        <NewDayModal mode="auto" onStartFresh={startFresh} onContinue={continueYesterday} />
+        <NewDayModal onStartFresh={startFresh} onContinue={continueYesterday} />
       )}
 
       {showNewDayConfirm && (
         <NewDayModal
-          mode="manual"
           onStartFresh={() => { startFresh(); setShowNewDayConfirm(false) }}
           onContinue={() => setShowNewDayConfirm(false)}
         />

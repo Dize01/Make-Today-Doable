@@ -9,7 +9,6 @@ import { FocusCard }        from './components/FocusCard'
 import { FocusModal }       from './components/FocusModal'
 import { OverwhelmedCard }  from './components/OverwhelmedCard'
 import { BreathingOverlay } from './components/BreathingOverlay'
-import { TipsCard, SmallStillCountsCard, YouGotThisButton } from './components/TipsCard'
 import { NewDayModal }      from './components/NewDayModal'
 
 function RefreshIcon() {
@@ -164,12 +163,6 @@ export default function App() {
             </p>
           </main>
 
-          {/* Right sidebar */}
-          <aside className="hidden xl:flex flex-col gap-4 w-64 flex-shrink-0">
-            <SmallStillCountsCard />
-            <TipsCard />
-            <YouGotThisButton />
-          </aside>
         </div>
       </div>
 

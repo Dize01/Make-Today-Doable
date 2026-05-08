@@ -9,8 +9,10 @@ import { FocusCard }        from './components/FocusCard'
 import { FocusModal }       from './components/FocusModal'
 import { OverwhelmedCard }  from './components/OverwhelmedCard'
 import { BreathingOverlay } from './components/BreathingOverlay'
-import { TipsCard, SmallStillCountsCard, YouGotThisButton } from './components/TipsCard'
 import { NewDayModal }      from './components/NewDayModal'
+import { HistoryPage }      from './components/HistoryPage'
+import { CalendarPage }     from './components/CalendarPage'
+import { RoutinesPage }     from './components/RoutinesPage'
 
 function RefreshIcon() {
   return (
@@ -44,9 +46,14 @@ export default function App() {
     addWin,
     updateWin,
     deleteWin,
+    loadRoutine,
+    addCustomRoutine,
+    deleteCustomRoutine,
     startFresh,
     continueYesterday,
     startedCount,
+    history,
+    customRoutines,
   } = useAppData()
 
   const [activeNav,       setActiveNav]       = useState('today')
@@ -102,74 +109,85 @@ export default function App() {
           <div className="w-8" />
         </div>
 
-        <div className="flex-1 flex gap-6 p-4 sm:p-6 lg:p-8 max-w-screen-xl mx-auto w-full">
-          {/* Center column */}
-          <main className="flex-1 flex flex-col gap-5 min-w-0">
-            {/* Header */}
-            <header className="space-y-1">
-              <p className="text-stone-400 text-sm flex items-center gap-1.5">
-                <span>{getGreetingEmoji()}</span>
-                {getGreeting()} 👋
-              </p>
-              <div className="flex items-end justify-between flex-wrap gap-3">
-                <div>
-                  <h1 className="text-3xl sm:text-4xl font-bold text-stone-800 leading-tight tracking-tight">
-                    Let's make today doable.
-                  </h1>
-                  <p className="text-stone-400 text-sm mt-1">Small steps. Real progress.</p>
-                </div>
+        <div className="flex-1 flex max-w-screen-xl mx-auto w-full">
+          <main className="flex-1 flex flex-col min-w-0">
 
-                <div className="flex items-center gap-2">
-                  <div className="flex items-center gap-1.5 px-3 py-2 rounded-2xl border border-stone-200 bg-white text-stone-600 text-sm shadow-softer cursor-default select-none">
-                    <CalendarIcon />
-                    <span className="font-medium whitespace-nowrap">
-                      {formatDisplayDate(data.date || todayKey())}
-                    </span>
+            {activeNav === 'history'  && <HistoryPage history={history} />}
+            {activeNav === 'routines' && (
+              <RoutinesPage
+                existingWins={data.wins}
+                customRoutines={customRoutines}
+                onStartRoutine={(tasks) => { loadRoutine(tasks); setActiveNav('today') }}
+                onAddRoutine={addCustomRoutine}
+                onDeleteRoutine={deleteCustomRoutine}
+              />
+            )}
+            {activeNav === 'calendar' && (
+              <CalendarPage
+                history={history}
+                todayEntry={{ date: data.date, energy: data.energy, wins: data.wins }}
+              />
+            )}
+
+            {activeNav === 'today' && (
+              <div className="flex flex-col gap-6 p-4 sm:p-6 lg:p-8">
+                {/* Header */}
+                <header className="space-y-1">
+                  <p className="text-stone-400 text-sm flex items-center gap-1.5">
+                    <span>{getGreetingEmoji()}</span>
+                    {getGreeting()} 👋
+                  </p>
+                  <div className="flex items-end justify-between flex-wrap gap-3">
+                    <div>
+                      <h1 className="text-3xl sm:text-4xl font-bold text-stone-800 leading-tight tracking-tight">
+                        Let's make today doable.
+                      </h1>
+                      <p className="text-stone-400 text-sm mt-1">Small steps. Real progress.</p>
+                    </div>
+
+                    <div className="flex items-center gap-2">
+                      <div className="flex items-center gap-1.5 px-3 py-2 rounded-2xl border border-stone-200 bg-white text-stone-600 text-sm cursor-default select-none">
+                        <CalendarIcon />
+                        <span className="font-medium whitespace-nowrap">
+                          {formatDisplayDate(data.date || todayKey())}
+                        </span>
+                      </div>
+                      <button
+                        onClick={handleNewDay}
+                        className="flex items-center gap-1.5 px-3 py-2 rounded-2xl border border-stone-200 bg-white text-stone-500 text-sm hover:bg-stone-50 hover:text-stone-700 transition"
+                      >
+                        <RefreshIcon />
+                        <span className="hidden sm:inline">New day</span>
+                      </button>
+                    </div>
                   </div>
-                  <button
-                    onClick={handleNewDay}
-                    className="flex items-center gap-1.5 px-3 py-2 rounded-2xl border border-stone-200 bg-white text-stone-500 text-sm hover:bg-stone-50 hover:text-stone-700 transition shadow-softer"
-                  >
-                    <RefreshIcon />
-                    <span className="hidden sm:inline">New day</span>
-                  </button>
+                </header>
+
+                {/* Energy selector */}
+                <EnergySelector value={data.energy} onChange={setEnergy} />
+
+                {/* 3 Wins */}
+                <WinsSection
+                  wins={data.wins}
+                  startedCount={startedCount}
+                  onStart={handleWinStart}
+                  onComplete={handleWinComplete}
+                  onAdd={addWin}
+                  onEdit={handleWinEdit}
+                  onDelete={deleteWin}
+                  onFocus={handleStartFocus}
+                />
+
+                {/* Bottom cards row */}
+                <div className="grid sm:grid-cols-2 gap-4">
+                  <FocusCard wins={data.wins} onStartFocus={handleStartFocus} />
+                  <OverwhelmedCard onBreak={() => setShowBreathing(true)} />
                 </div>
+
               </div>
-            </header>
+            )}
 
-            {/* Energy selector */}
-            <EnergySelector value={data.energy} onChange={setEnergy} />
-
-            {/* 3 Wins */}
-            <WinsSection
-              wins={data.wins}
-              startedCount={startedCount}
-              onStart={handleWinStart}
-              onComplete={handleWinComplete}
-              onAdd={addWin}
-              onEdit={handleWinEdit}
-              onDelete={deleteWin}
-              onFocus={handleStartFocus}
-            />
-
-            {/* Bottom cards row */}
-            <div className="grid sm:grid-cols-2 gap-4">
-              <FocusCard wins={data.wins} onStartFocus={handleStartFocus} />
-              <OverwhelmedCard onBreak={() => setShowBreathing(true)} />
-            </div>
-
-            {/* Footer affirmation */}
-            <p className="text-center text-xs text-stone-300 py-2">
-              ⭐ Every small step forward counts. You're doing great. 💜
-            </p>
           </main>
-
-          {/* Right sidebar */}
-          <aside className="hidden xl:flex flex-col gap-4 w-64 flex-shrink-0">
-            <SmallStillCountsCard />
-            <TipsCard />
-            <YouGotThisButton />
-          </aside>
         </div>
       </div>
 

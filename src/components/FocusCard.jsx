@@ -2,7 +2,7 @@ export function FocusCard({ wins, onStartFocus }) {
   const activeWin = wins.find(w => w.started && !w.completed) ?? wins.find(w => !w.completed)
 
   return (
-    <div className="relative rounded-3xl overflow-hidden shadow-soft border border-stone-100 bg-gradient-to-br from-sage-50 to-emerald-50 p-6">
+    <div className="relative rounded-3xl overflow-hidden border border-stone-100 bg-gradient-to-br from-sage-50 to-emerald-50 p-6">
       {/* Decorative leaf illustration */}
       <div className="absolute bottom-0 right-0 text-8xl opacity-10 select-none pointer-events-none">
         🌿
@@ -20,7 +20,7 @@ export function FocusCard({ wins, onStartFocus }) {
 
       <button
         onClick={() => onStartFocus(activeWin ?? null)}
-        className="flex items-center gap-2 px-4 py-2.5 rounded-2xl bg-sage-500 text-white text-sm font-medium hover:bg-sage-600 transition shadow-softer"
+        className="flex items-center gap-2 px-4 py-2.5 rounded-2xl bg-sage-500 text-white text-sm font-medium hover:bg-sage-600 transition"
       >
         Start focusing 🍃
       </button>

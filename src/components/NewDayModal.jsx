@@ -1,9 +1,9 @@
 export function NewDayModal({ onStartFresh, onContinue }) {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/20 backdrop-blur-sm animate-fade-in">
-      <div className="bg-white rounded-3xl shadow-card w-full max-w-sm p-8 text-center animate-slide-up">
+      <div className="bg-white rounded-3xl w-full max-w-sm p-8 text-center animate-slide-up">
         <div className="flex justify-center mb-5">
-          <div className="w-14 h-14 rounded-2xl bg-sage-100 flex items-center justify-center shadow-softer">
+          <div className="w-14 h-14 rounded-2xl bg-sage-100 flex items-center justify-center">
             <svg viewBox="0 0 24 24" fill="none" stroke="#5a8a5a" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" className="w-7 h-7">
               <path d="M12 22V12" />
               <path d="M12 12C12 12 7 10 5 6c4 0 7 2 7 6z" />
@@ -23,7 +23,7 @@ export function NewDayModal({ onStartFresh, onContinue }) {
         <div className="flex flex-col gap-3">
           <button
             onClick={onStartFresh}
-            className="w-full py-3.5 rounded-2xl bg-sage-500 text-white text-sm font-semibold hover:bg-sage-600 transition shadow-softer"
+            className="w-full py-3.5 rounded-2xl bg-sage-500 text-white text-sm font-semibold hover:bg-sage-600 transition"
           >
             Start fresh 🌱
           </button>

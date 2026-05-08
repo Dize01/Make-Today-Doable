@@ -20,7 +20,7 @@ function DotsMenu({ onEdit, onDelete, onClose }) {
   return (
     <div
       ref={ref}
-      className="absolute right-0 top-8 z-10 w-36 bg-white rounded-2xl shadow-card border border-stone-100 py-1.5 animate-fade-in"
+      className="absolute right-0 top-8 z-10 w-36 bg-white rounded-2xl border border-stone-100 py-1.5 animate-fade-in"
     >
       <button
         onClick={() => { onEdit(); onClose() }}
@@ -38,19 +38,19 @@ function DotsMenu({ onEdit, onDelete, onClose }) {
   )
 }
 
-export function WinCard({ win, index, onStart, onComplete, onEdit, onDelete, onFocus }) {
+export function WinCard({ win, index, isActive, onStart, onComplete, onEdit, onDelete, onFocus }) {
   const [menuOpen, setMenuOpen] = useState(false)
 
   const numClass = NUMBER_COLORS[index] ?? NUMBER_COLORS[0]
 
   const cardClass = win.completed
     ? 'opacity-60 bg-stone-50'
-    : win.started
+    : isActive
     ? 'bg-white border-l-4 border-l-sage-400'
     : 'bg-white'
 
   return (
-    <div className={`relative rounded-2xl shadow-softer border border-stone-100 px-5 py-4 transition-all duration-300 ${cardClass}`}>
+    <div className={`relative rounded-2xl border border-stone-50 px-5 py-4 transition-all duration-300 ${cardClass}`}>
       <div className="flex items-start gap-4">
         {/* Number circle */}
         <button
@@ -63,11 +63,11 @@ export function WinCard({ win, index, onStart, onComplete, onEdit, onDelete, onF
 
         {/* Content */}
         <div className="flex-1 min-w-0">
-          <p className={`font-medium text-sm leading-snug ${win.completed ? 'line-through text-stone-400' : 'text-stone-800'}`}>
+          <p className={`font-medium text-base leading-snug ${win.completed ? 'line-through text-stone-400' : 'text-stone-800'}`}>
             {win.title}
           </p>
           {win.tinyStep && (
-            <p className="text-xs text-stone-400 mt-1">
+            <p className="text-sm text-stone-400 mt-1">
               <span className="text-stone-300">→</span> Tiny first step:{' '}
               <span className="text-stone-500">{win.tinyStep}</span>
             </p>
@@ -78,11 +78,19 @@ export function WinCard({ win, index, onStart, onComplete, onEdit, onDelete, onF
         {!win.completed && (
           <div className="flex items-center gap-2 flex-shrink-0">
             <button
-              onClick={() => { onStart(win.id); onFocus(win) }}
+              onClick={onStart}
               className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-sage-50 text-sage-700 text-xs font-medium hover:bg-sage-100 transition"
             >
               <span className="text-sage-500">▶</span>
               Start
+            </button>
+
+            <button
+              onClick={() => onComplete(win.id)}
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-stone-200 text-stone-400 text-xs font-medium hover:bg-stone-50 hover:text-stone-600 hover:border-stone-300 transition"
+            >
+              <span>✓</span>
+              Done
             </button>
 
             <div className="relative">

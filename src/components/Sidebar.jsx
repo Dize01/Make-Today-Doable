@@ -38,7 +38,7 @@ function StarIcon() {
   )
 }
 
-export function Sidebar({ activeNav, onNavChange, isMobileOpen, onMobileClose }) {
+export function Sidebar({ activeNav, onNavChange, isMobileOpen, onMobileClose, onLegalNav }) {
   return (
     <>
       {/* Mobile backdrop */}
@@ -92,10 +92,17 @@ export function Sidebar({ activeNav, onNavChange, isMobileOpen, onMobileClose })
         </nav>
 
         {/* Motivational bottom card */}
-        <div className="mx-3 mb-4 p-4 rounded-2xl bg-sage-50 border border-sage-100">
+        <div className="mx-3 mb-3 p-4 rounded-2xl bg-sage-50 border border-sage-100">
           <p className="text-xs font-semibold text-sage-700 mb-1">Not today is okay.</p>
           <p className="text-xs text-sage-600 leading-relaxed">You can only do what you can do.</p>
           <div className="mt-3 flex justify-center text-2xl">🌱</div>
+        </div>
+
+        {/* Legal links */}
+        <div className="flex items-center justify-center gap-3 mb-4">
+          <button onClick={() => { onNavChange('privacy'); onMobileClose?.() }} className="text-xs text-stone-300 hover:text-stone-400 transition">Privacy</button>
+          <span className="text-stone-200 text-xs">·</span>
+          <button onClick={() => { onNavChange('terms'); onMobileClose?.() }} className="text-xs text-stone-300 hover:text-stone-400 transition">Terms</button>
         </div>
       </aside>
     </>

@@ -13,6 +13,8 @@ import { NewDayModal }      from './components/NewDayModal'
 import { HistoryPage }      from './components/HistoryPage'
 import { CalendarPage }     from './components/CalendarPage'
 import { RoutinesPage }     from './components/RoutinesPage'
+import { PrivacyPage }      from './components/PrivacyPage'
+import { TermsPage }        from './components/TermsPage'
 
 function RefreshIcon() {
   return (
@@ -112,6 +114,8 @@ export default function App() {
         <div className="flex-1 flex max-w-screen-xl mx-auto w-full">
           <main className="flex-1 flex flex-col min-w-0">
 
+            {activeNav === 'privacy'  && <PrivacyPage />}
+            {activeNav === 'terms'    && <TermsPage />}
             {activeNav === 'history'  && <HistoryPage history={history} />}
             {activeNav === 'routines' && (
               <RoutinesPage

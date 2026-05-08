@@ -50,7 +50,7 @@ export function WinCard({ win, index, isActive, onStart, onComplete, onEdit, onD
     : 'bg-white'
 
   return (
-    <div className={`relative rounded-2xl border border-stone-100 px-5 py-4 transition-all duration-300 ${cardClass}`}>
+    <div className={`relative rounded-2xl border border-stone-50 px-5 py-4 transition-all duration-300 ${cardClass}`}>
       <div className="flex items-start gap-4">
         {/* Number circle */}
         <button

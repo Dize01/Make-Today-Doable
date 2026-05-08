@@ -50,7 +50,7 @@ export function WinsSection({ wins, startedCount, onStart, onComplete, onAdd, on
         <div className="flex items-start justify-between mb-4">
           <div>
             <div className="flex items-center gap-2">
-              <h2 className="font-semibold text-stone-800 text-base">Today's 3 Wins</h2>
+              <h2 className="font-semibold text-stone-900 text-base">Today's 3 Wins</h2>
               {wins.length > 0 && (
                 <span className="text-xs bg-sage-50 text-sage-600 border border-sage-100 px-2 py-0.5 rounded-full font-medium">
                   {startedCount} of {wins.length} started

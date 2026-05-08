@@ -130,7 +130,7 @@ export default function App() {
             )}
 
             {activeNav === 'today' && (
-              <div className="flex flex-col gap-5 p-4 sm:p-6 lg:p-8">
+              <div className="flex flex-col gap-6 p-4 sm:p-6 lg:p-8">
                 {/* Header */}
                 <header className="space-y-1">
                   <p className="text-stone-400 text-sm flex items-center gap-1.5">

@@ -146,7 +146,7 @@ export default function App() {
                     </div>
 
                     <div className="flex items-center gap-2">
-                      <div className="flex items-center gap-1.5 px-3 py-2 rounded-2xl border border-stone-200 bg-white text-stone-600 text-sm shadow-softer cursor-default select-none">
+                      <div className="flex items-center gap-1.5 px-3 py-2 rounded-2xl border border-stone-200 bg-white text-stone-600 text-sm cursor-default select-none">
                         <CalendarIcon />
                         <span className="font-medium whitespace-nowrap">
                           {formatDisplayDate(data.date || todayKey())}
@@ -154,7 +154,7 @@ export default function App() {
                       </div>
                       <button
                         onClick={handleNewDay}
-                        className="flex items-center gap-1.5 px-3 py-2 rounded-2xl border border-stone-200 bg-white text-stone-500 text-sm hover:bg-stone-50 hover:text-stone-700 transition shadow-softer"
+                        className="flex items-center gap-1.5 px-3 py-2 rounded-2xl border border-stone-200 bg-white text-stone-500 text-sm hover:bg-stone-50 hover:text-stone-700 transition"
                       >
                         <RefreshIcon />
                         <span className="hidden sm:inline">New day</span>

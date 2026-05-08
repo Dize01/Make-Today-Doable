@@ -54,7 +54,7 @@ function DayCell({ day, entry, isToday, isSelected, onClick }) {
       className={[
         'relative flex flex-col items-center justify-between rounded-xl p-1.5 sm:p-2 aspect-square text-left transition-all duration-150 border',
         isSelected
-          ? 'bg-sage-50 border-sage-200 shadow-softer'
+          ? 'bg-sage-50 border-sage-200'
           : isToday
           ? 'bg-white border-sage-200 ring-1 ring-sage-200'
           : hasData
@@ -210,7 +210,7 @@ export function CalendarPage({ history = [], todayEntry }) {
       <div className="flex gap-5 items-start">
 
         {/* Calendar panel */}
-        <div className="flex-1 min-w-0 bg-white rounded-3xl border border-stone-100 shadow-soft p-5 space-y-4">
+        <div className="flex-1 min-w-0 bg-white rounded-3xl border border-stone-100 p-5 space-y-4">
 
           {/* Month nav */}
           <div className="flex items-center justify-between">
@@ -272,14 +272,14 @@ export function CalendarPage({ history = [], todayEntry }) {
         </div>
 
         {/* Detail panel — desktop only */}
-        <div className="hidden lg:block w-64 flex-shrink-0 bg-white rounded-3xl border border-stone-100 shadow-soft min-h-48">
+        <div className="hidden lg:block w-64 flex-shrink-0 bg-white rounded-3xl border border-stone-100 min-h-48">
           <DayDetail entry={selectedEntry} dateStr={selected} />
         </div>
       </div>
 
       {/* Detail card — mobile/tablet, shown when a day is selected */}
       {selected && (
-        <div className="lg:hidden bg-white rounded-3xl border border-stone-100 shadow-soft animate-slide-up">
+        <div className="lg:hidden bg-white rounded-3xl border border-stone-100 animate-slide-up">
           <DayDetail entry={selectedEntry} dateStr={selected} />
         </div>
       )}

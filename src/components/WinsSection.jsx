@@ -45,7 +45,7 @@ export function WinsSection({ wins, startedCount, onStart, onComplete, onAdd, on
 
   return (
     <>
-      <div className="bg-white rounded-3xl shadow-soft border border-stone-100 p-6">
+      <div className="bg-white rounded-3xl border border-stone-100 p-6">
         {/* Header */}
         <div className="flex items-start justify-between mb-4">
           <div>

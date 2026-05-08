@@ -28,7 +28,7 @@ function DayCard({ entry }) {
   const summary = completionSummary(entry.wins)
 
   return (
-    <div className="bg-white rounded-2xl border border-stone-100 shadow-softer p-5 space-y-4">
+    <div className="bg-white rounded-2xl border border-stone-100 p-5 space-y-4">
       {/* Top row */}
       <div className="flex items-start justify-between gap-3 flex-wrap">
         <div>

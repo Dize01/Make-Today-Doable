@@ -128,7 +128,7 @@ function CreateModal({ onSave, onClose }) {
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/20 backdrop-blur-sm animate-fade-in">
-      <div className="bg-white rounded-3xl shadow-card w-full max-w-sm max-h-[90dvh] overflow-y-auto animate-slide-up">
+      <div className="bg-white rounded-3xl w-full max-w-sm max-h-[90dvh] overflow-y-auto animate-slide-up">
         <div className="flex items-center justify-between px-6 pt-6 pb-4 border-b border-stone-100">
           <h2 className="font-semibold text-stone-800 text-base">Create a routine</h2>
           <button onClick={onClose} className="w-8 h-8 flex items-center justify-center rounded-xl text-stone-400 hover:bg-stone-100 transition text-xl">×</button>
@@ -264,7 +264,7 @@ function RoutineModal({ routine, hasExistingWins, onStart, onDelete, onClose }) 
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/20 backdrop-blur-sm animate-fade-in">
-      <div className="bg-white rounded-3xl shadow-card w-full max-w-sm animate-slide-up overflow-hidden">
+      <div className="bg-white rounded-3xl w-full max-w-sm animate-slide-up overflow-hidden">
 
         <div className={`px-6 pt-6 pb-4 ${routine.cardCls}`}>
           <div className="flex items-center justify-between mb-3">
@@ -340,7 +340,7 @@ function RoutineModal({ routine, hasExistingWins, onStart, onDelete, onClose }) 
         ) : (
           <div className="px-6 pb-6 space-y-2">
             <button onClick={handleStart}
-              className="w-full py-3 rounded-2xl bg-sage-500 text-white text-sm font-semibold hover:bg-sage-600 transition shadow-softer">
+              className="w-full py-3 rounded-2xl bg-sage-500 text-white text-sm font-semibold hover:bg-sage-600 transition">
               Start this routine
             </button>
             <button onClick={onClose}
@@ -359,7 +359,7 @@ function RoutineModal({ routine, hasExistingWins, onStart, onDelete, onClose }) 
 function RoutineCard({ routine, onClick }) {
   return (
     <button onClick={() => onClick(routine)}
-      className={`w-full text-left rounded-2xl border p-5 space-y-3 hover:shadow-soft transition-all duration-200 group ${routine.cardCls}`}
+      className={`w-full text-left rounded-2xl border p-5 space-y-3 transition-all duration-200 group ${routine.cardCls}`}
     >
       <div className="flex items-start gap-3">
         <div className={`w-10 h-10 rounded-xl flex items-center justify-center text-xl flex-shrink-0 ${routine.iconCls}`}>
@@ -423,7 +423,7 @@ export function RoutinesPage({ existingWins = [], customRoutines = [], onStartRo
             </div>
             <button
               onClick={() => setShowCreate(true)}
-              className="flex items-center gap-2 px-4 py-2 rounded-2xl border border-sage-200 bg-sage-50 text-sage-700 text-sm font-medium hover:bg-sage-100 transition shadow-softer"
+              className="flex items-center gap-2 px-4 py-2 rounded-2xl border border-sage-200 bg-sage-50 text-sage-700 text-sm font-medium hover:bg-sage-100 transition"
             >
               <span>+</span> Create routine
             </button>

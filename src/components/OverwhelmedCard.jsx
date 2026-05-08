@@ -1,6 +1,6 @@
 export function OverwhelmedCard({ onBreak }) {
   return (
-    <div className="relative rounded-3xl overflow-hidden shadow-soft border border-stone-100 bg-gradient-to-br from-lavender-50 to-purple-50 p-6">
+    <div className="relative rounded-3xl overflow-hidden border border-stone-100 bg-gradient-to-br from-lavender-50 to-purple-50 p-6">
       {/* Decorative cup illustration */}
       <div className="absolute bottom-0 right-0 text-7xl opacity-20 select-none pointer-events-none pr-2 pb-1">
         ☕

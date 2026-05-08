@@ -20,7 +20,7 @@ function DotsMenu({ onEdit, onDelete, onClose }) {
   return (
     <div
       ref={ref}
-      className="absolute right-0 top-8 z-10 w-36 bg-white rounded-2xl shadow-card border border-stone-100 py-1.5 animate-fade-in"
+      className="absolute right-0 top-8 z-10 w-36 bg-white rounded-2xl border border-stone-100 py-1.5 animate-fade-in"
     >
       <button
         onClick={() => { onEdit(); onClose() }}
@@ -50,7 +50,7 @@ export function WinCard({ win, index, isActive, onStart, onComplete, onEdit, onD
     : 'bg-white'
 
   return (
-    <div className={`relative rounded-2xl shadow-softer border border-stone-100 px-5 py-4 transition-all duration-300 ${cardClass}`}>
+    <div className={`relative rounded-2xl border border-stone-100 px-5 py-4 transition-all duration-300 ${cardClass}`}>
       <div className="flex items-start gap-4">
         {/* Number circle */}
         <button

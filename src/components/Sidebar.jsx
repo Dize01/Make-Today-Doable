@@ -61,9 +61,9 @@ export function Sidebar({ activeNav, onNavChange, isMobileOpen, onMobileClose })
       <aside
         className={[
           'fixed top-0 left-0 h-full z-30 flex flex-col',
-          'w-56 bg-stone-50 border-r border-stone-200 shadow-softer',
+          'w-56 bg-stone-50 border-r border-stone-200',
           'transition-transform duration-300',
-          'lg:translate-x-0 lg:sticky lg:top-0 lg:h-screen lg:z-auto lg:shadow-none',
+          'lg:translate-x-0 lg:sticky lg:top-0 lg:h-screen lg:z-auto',
           isMobileOpen ? 'translate-x-0' : '-translate-x-full',
         ].join(' ')}
       >

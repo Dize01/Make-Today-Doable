@@ -14,7 +14,7 @@ export function AddWinModal({ onAdd, onClose, editWin }) {
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/20 backdrop-blur-sm animate-fade-in">
-      <div className="bg-white rounded-3xl shadow-card w-full max-w-md p-6 animate-slide-up">
+      <div className="bg-white rounded-3xl w-full max-w-md p-6 animate-slide-up">
         <h2 className="text-lg font-semibold text-stone-800 mb-1">
           {editWin ? 'Edit your win' : 'Add a win'}
         </h2>

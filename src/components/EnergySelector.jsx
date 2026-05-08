@@ -4,7 +4,7 @@ const LEVELS = [
     label: 'Low',
     icon:  '🔋',
     desc:  'Taking it slow today',
-    active:   'bg-blue-50 border-blue-200 text-blue-700 shadow-softer',
+    active:   'bg-blue-50 border-blue-200 text-blue-700',
     inactive: 'bg-white border-stone-200 text-stone-500 hover:bg-stone-50',
   },
   {
@@ -12,7 +12,7 @@ const LEVELS = [
     label: 'Medium',
     icon:  '🙂',
     desc:  'Steady and balanced',
-    active:   'bg-sage-50 border-sage-200 text-sage-700 shadow-softer',
+    active:   'bg-sage-50 border-sage-200 text-sage-700',
     inactive: 'bg-white border-stone-200 text-stone-500 hover:bg-stone-50',
   },
   {
@@ -20,14 +20,14 @@ const LEVELS = [
     label: 'High',
     icon:  '⚡',
     desc:  'Ready to go!',
-    active:   'bg-amber-50 border-amber-200 text-amber-700 shadow-softer',
+    active:   'bg-amber-50 border-amber-200 text-amber-700',
     inactive: 'bg-white border-stone-200 text-stone-500 hover:bg-stone-50',
   },
 ]
 
 export function EnergySelector({ value, onChange }) {
   return (
-    <div className="bg-white rounded-3xl shadow-soft px-5 py-4 border border-stone-100 flex items-center gap-4">
+    <div className="bg-white rounded-3xl px-5 py-4 border border-stone-100 flex items-center gap-4">
       <div className="flex-shrink-0">
         <h2 className="font-semibold text-stone-800 text-base">How's your energy today?</h2>
         <p className="text-stone-400 text-sm">This helps keep your plans realistic.</p>

@@ -12,9 +12,10 @@ const defaultWin = (id) => ({
 })
 
 const defaultState = () => ({
-  date:   todayKey(),
-  energy: null,
-  wins:   [],
+  date:    todayKey(),
+  energy:  null,
+  wins:    [],
+  history: [],
 })
 
 function load() {
@@ -35,7 +36,11 @@ function save(state) {
 }
 
 export function useAppData() {
-  const [data, setData] = useState(() => load() ?? defaultState())
+  const [data, setData] = useState(() => {
+    const saved = load()
+    if (!saved) return defaultState()
+    return { history: [], ...saved }   // backfill history for existing saves
+  })
   const [showNewDayModal, setShowNewDayModal] = useState(false)
 
   // Check on mount whether the date has changed
@@ -86,8 +91,14 @@ export function useAppData() {
   }, [])
 
   const startFresh = useCallback(() => {
-    const fresh = { ...defaultState(), date: todayKey() }
-    setData(fresh)
+    setData(prev => {
+      const hasContent = prev.wins.length > 0 || prev.energy !== null
+      const entry = { date: prev.date, energy: prev.energy, wins: prev.wins }
+      const newHistory = hasContent
+        ? [entry, ...(prev.history ?? [])].slice(0, 60)
+        : (prev.history ?? [])
+      return { ...defaultState(), date: todayKey(), history: newHistory }
+    })
     setShowNewDayModal(false)
   }, [])
 
@@ -108,5 +119,6 @@ export function useAppData() {
     startFresh,
     continueYesterday,
     startedCount,
+    history: data.history ?? [],
   }
 }

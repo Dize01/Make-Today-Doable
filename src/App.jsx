@@ -184,10 +184,6 @@ export default function App() {
                   <OverwhelmedCard onBreak={() => setShowBreathing(true)} />
                 </div>
 
-                {/* Footer affirmation */}
-                <p className="text-center text-xs text-stone-300 py-2">
-                  ⭐ Every small step forward counts. You're doing great. 💜
-                </p>
               </div>
             )}
 

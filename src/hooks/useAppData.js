@@ -39,7 +39,7 @@ export function useAppData() {
   const [data, setData] = useState(() => {
     const saved = load()
     if (!saved) return defaultState()
-    return { history: [], ...saved }   // backfill history for existing saves
+    return { history: [], customRoutines: [], ...saved }
   })
   const [showNewDayModal, setShowNewDayModal] = useState(false)
 
@@ -83,6 +83,33 @@ export function useAppData() {
     }))
   }, [])
 
+  const loadRoutine = useCallback((tasks) => {
+    setData(prev => ({
+      ...prev,
+      wins: tasks.slice(0, 3).map((t, i) => ({
+        id:        Date.now() + i,
+        title:     t.title,
+        tinyStep:  t.tinyStep ?? '',
+        completed: false,
+        started:   false,
+      })),
+    }))
+  }, [])
+
+  const addCustomRoutine = useCallback((routine) => {
+    setData(prev => ({
+      ...prev,
+      customRoutines: [...(prev.customRoutines ?? []), { ...routine, id: `custom-${Date.now()}`, custom: true }],
+    }))
+  }, [])
+
+  const deleteCustomRoutine = useCallback((id) => {
+    setData(prev => ({
+      ...prev,
+      customRoutines: (prev.customRoutines ?? []).filter(r => r.id !== id),
+    }))
+  }, [])
+
   const deleteWin = useCallback((id) => {
     setData(prev => ({
       ...prev,
@@ -116,9 +143,13 @@ export function useAppData() {
     addWin,
     updateWin,
     deleteWin,
+    loadRoutine,
+    addCustomRoutine,
+    deleteCustomRoutine,
     startFresh,
     continueYesterday,
     startedCount,
-    history: data.history ?? [],
+    history:        data.history        ?? [],
+    customRoutines: data.customRoutines ?? [],
   }
 }

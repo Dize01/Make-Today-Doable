@@ -11,6 +11,8 @@ import { OverwhelmedCard }  from './components/OverwhelmedCard'
 import { BreathingOverlay } from './components/BreathingOverlay'
 import { NewDayModal }      from './components/NewDayModal'
 import { HistoryPage }      from './components/HistoryPage'
+import { CalendarPage }     from './components/CalendarPage'
+import { RoutinesPage }     from './components/RoutinesPage'
 
 function RefreshIcon() {
   return (
@@ -44,10 +46,14 @@ export default function App() {
     addWin,
     updateWin,
     deleteWin,
+    loadRoutine,
+    addCustomRoutine,
+    deleteCustomRoutine,
     startFresh,
     continueYesterday,
     startedCount,
     history,
+    customRoutines,
   } = useAppData()
 
   const [activeNav,       setActiveNav]       = useState('today')
@@ -106,7 +112,22 @@ export default function App() {
         <div className="flex-1 flex max-w-screen-xl mx-auto w-full">
           <main className="flex-1 flex flex-col min-w-0">
 
-            {activeNav === 'history' && <HistoryPage history={history} />}
+            {activeNav === 'history'  && <HistoryPage history={history} />}
+            {activeNav === 'routines' && (
+              <RoutinesPage
+                existingWins={data.wins}
+                customRoutines={customRoutines}
+                onStartRoutine={(tasks) => { loadRoutine(tasks); setActiveNav('today') }}
+                onAddRoutine={addCustomRoutine}
+                onDeleteRoutine={deleteCustomRoutine}
+              />
+            )}
+            {activeNav === 'calendar' && (
+              <CalendarPage
+                history={history}
+                todayEntry={{ date: data.date, energy: data.energy, wins: data.wins }}
+              />
+            )}
 
             {activeNav === 'today' && (
               <div className="flex flex-col gap-5 p-4 sm:p-6 lg:p-8">

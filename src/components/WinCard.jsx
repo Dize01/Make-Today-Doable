@@ -63,11 +63,11 @@ export function WinCard({ win, index, isActive, onStart, onComplete, onEdit, onD
 
         {/* Content */}
         <div className="flex-1 min-w-0">
-          <p className={`font-medium text-sm leading-snug ${win.completed ? 'line-through text-stone-400' : 'text-stone-800'}`}>
+          <p className={`font-medium text-base leading-snug ${win.completed ? 'line-through text-stone-400' : 'text-stone-800'}`}>
             {win.title}
           </p>
           {win.tinyStep && (
-            <p className="text-xs text-stone-400 mt-1">
+            <p className="text-sm text-stone-400 mt-1">
               <span className="text-stone-300">→</span> Tiny first step:{' '}
               <span className="text-stone-500">{win.tinyStep}</span>
             </p>

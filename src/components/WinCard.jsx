@@ -61,59 +61,96 @@ export function WinCard({ win, index, isActive, onStart, onComplete, onEdit, onD
           {win.completed ? '✓' : index + 1}
         </button>
 
-        {/* Content */}
+        {/* Content + Actions */}
         <div className="flex-1 min-w-0">
-          <p className={`font-medium text-base leading-snug ${win.completed ? 'line-through text-stone-400' : 'text-stone-800'}`}>
-            {win.title}
-          </p>
-          {win.tinyStep && (
-            <p className="text-sm text-stone-400 mt-1">
-              <span className="text-stone-300">→</span> Tiny first step:{' '}
-              <span className="text-stone-500">{win.tinyStep}</span>
-            </p>
-          )}
-        </div>
-
-        {/* Actions */}
-        {!win.completed && (
-          <div className="flex items-center gap-2 flex-shrink-0">
-            <button
-              onClick={onStart}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-sage-50 text-sage-700 text-xs font-medium hover:bg-sage-100 transition"
-            >
-              <span className="text-sage-500">▶</span>
-              Start
-            </button>
-
-            <button
-              onClick={() => onComplete(win.id)}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-stone-200 text-stone-400 text-xs font-medium hover:bg-stone-50 hover:text-stone-600 hover:border-stone-300 transition"
-            >
-              <span>✓</span>
-              Done
-            </button>
-
-            <div className="relative">
-              <button
-                onClick={() => setMenuOpen(v => !v)}
-                className="w-7 h-7 flex items-center justify-center rounded-xl text-stone-400 hover:bg-stone-100 transition text-base leading-none"
-              >
-                ···
-              </button>
-              {menuOpen && (
-                <DotsMenu
-                  onEdit={() => onEdit(win)}
-                  onDelete={() => onDelete(win.id)}
-                  onClose={() => setMenuOpen(false)}
-                />
+          <div className="flex items-start gap-2">
+            <div className="flex-1 min-w-0">
+              <p className={`font-medium text-base leading-snug ${win.completed ? 'line-through text-stone-400' : 'text-stone-800'}`}>
+                {win.title}
+              </p>
+              {win.tinyStep && (
+                <p className="text-sm text-stone-400 mt-1">
+                  <span className="text-stone-300">→</span> Tiny first step:{' '}
+                  <span className="text-stone-500">{win.tinyStep}</span>
+                </p>
               )}
             </div>
-          </div>
-        )}
 
-        {win.completed && (
-          <span className="text-xs text-sage-500 font-medium flex-shrink-0">Done 🌿</span>
-        )}
+            {/* Actions — desktop (sm+) */}
+            {!win.completed && (
+              <div className="hidden sm:flex items-center gap-2 flex-shrink-0">
+                <button
+                  onClick={onStart}
+                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-sage-50 text-sage-700 text-xs font-medium hover:bg-sage-100 transition"
+                >
+                  <span className="text-sage-500">▶</span>
+                  Start
+                </button>
+                <button
+                  onClick={() => onComplete(win.id)}
+                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-stone-200 text-stone-400 text-xs font-medium hover:bg-stone-50 hover:text-stone-600 hover:border-stone-300 transition"
+                >
+                  <span>✓</span>
+                  Done
+                </button>
+                <div className="relative">
+                  <button
+                    onClick={() => setMenuOpen(v => !v)}
+                    className="w-7 h-7 flex items-center justify-center rounded-xl text-stone-400 hover:bg-stone-100 transition text-base leading-none"
+                  >
+                    ···
+                  </button>
+                  {menuOpen && (
+                    <DotsMenu
+                      onEdit={() => onEdit(win)}
+                      onDelete={() => onDelete(win.id)}
+                      onClose={() => setMenuOpen(false)}
+                    />
+                  )}
+                </div>
+              </div>
+            )}
+
+            {win.completed && (
+              <span className="text-xs text-sage-500 font-medium flex-shrink-0">Done 🌿</span>
+            )}
+          </div>
+
+          {/* Actions — mobile (below text) */}
+          {!win.completed && (
+            <div className="flex sm:hidden items-center gap-2 mt-3">
+              <button
+                onClick={onStart}
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-sage-50 text-sage-700 text-xs font-medium hover:bg-sage-100 transition"
+              >
+                <span className="text-sage-500">▶</span>
+                Start
+              </button>
+              <button
+                onClick={() => onComplete(win.id)}
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-stone-200 text-stone-400 text-xs font-medium hover:bg-stone-50 hover:text-stone-600 hover:border-stone-300 transition"
+              >
+                <span>✓</span>
+                Done
+              </button>
+              <div className="relative">
+                <button
+                  onClick={() => setMenuOpen(v => !v)}
+                  className="w-7 h-7 flex items-center justify-center rounded-xl text-stone-400 hover:bg-stone-100 transition text-base leading-none"
+                >
+                  ···
+                </button>
+                {menuOpen && (
+                  <DotsMenu
+                    onEdit={() => onEdit(win)}
+                    onDelete={() => onDelete(win.id)}
+                    onClose={() => setMenuOpen(false)}
+                  />
+                )}
+              </div>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   )

@@ -27,13 +27,13 @@ const LEVELS = [
 
 export function EnergySelector({ value, onChange }) {
   return (
-    <div className="bg-white rounded-3xl px-5 py-4 border border-stone-100 flex items-center gap-4">
+    <div className="bg-white rounded-3xl px-5 py-4 border border-stone-100 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4">
       <div className="flex-shrink-0">
         <h2 className="font-semibold text-stone-800 text-base">How's your energy today?</h2>
         <p className="text-stone-400 text-sm">This helps keep your plans realistic.</p>
       </div>
 
-      <div className="flex gap-2 flex-1 justify-end">
+      <div className="flex gap-2 sm:flex-1 sm:justify-end">
         {LEVELS.map(({ id, label, icon, active, inactive }) => (
           <button
             key={id}

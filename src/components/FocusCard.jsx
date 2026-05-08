@@ -20,7 +20,7 @@ export function FocusCard({ wins, onStartFocus }) {
 
       <button
         onClick={() => onStartFocus(activeWin ?? null)}
-        className="flex items-center gap-2 px-4 py-2.5 rounded-2xl bg-sage-500 text-white text-sm font-medium hover:bg-sage-600 transition"
+        className="flex items-center gap-2 px-4 py-2.5 rounded-2xl bg-sage-500 border border-sage-500 text-white text-sm font-medium hover:bg-sage-600 hover:border-sage-600 transition"
       >
         Start focusing 🍃
       </button>

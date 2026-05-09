@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://maketoday.app/sitemap.xml

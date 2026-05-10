@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useRef } from 'react'
 import { WinCard, EmptyWinSlot } from './WinCard'
 import { AddWinModal } from './AddWinModal'
 
@@ -6,19 +6,8 @@ export function WinsSection({ wins, startedCount, onStart, onComplete, onAdd, on
   const [showModal,   setShowModal]   = useState(false)
   const [editingWin,  setEditingWin]  = useState(null)
   const [activeWinId, setActiveWinId] = useState(null)
-  const [newWinId,    setNewWinId]    = useState(null)
-  const prevLengthRef = useRef(wins.length)
-
-  useEffect(() => {
-    if (wins.length > prevLengthRef.current) {
-      const newest = wins[wins.length - 1]
-      setNewWinId(newest.id)
-      const t = setTimeout(() => setNewWinId(null), 2000)
-      prevLengthRef.current = wins.length
-      return () => clearTimeout(t)
-    }
-    prevLengthRef.current = wins.length
-  }, [wins])
+  const [highlightLast, setHighlightLast] = useState(false)
+  const highlightTimer = useRef(null)
 
   // Default active: the explicit choice, or the first non-completed win
   const resolvedActiveId = activeWinId ?? wins.find(w => !w.completed)?.id ?? null
@@ -51,6 +40,9 @@ export function WinsSection({ wins, startedCount, onStart, onComplete, onAdd, on
       onEdit(editingWin.id, { title, tinyStep })
     } else {
       onAdd({ title, tinyStep })
+      if (highlightTimer.current) clearTimeout(highlightTimer.current)
+      setHighlightLast(true)
+      highlightTimer.current = setTimeout(() => setHighlightLast(false), 1800)
     }
   }
 
@@ -93,7 +85,7 @@ export function WinsSection({ wins, startedCount, onStart, onComplete, onAdd, on
                   win={win}
                   index={i}
                   isActive={win.id === resolvedActiveId}
-                  isNew={win.id === newWinId}
+                  isNew={highlightLast && win.id === wins[wins.length - 1]?.id}
                   onStart={() => handleStart(win)}
                   onComplete={handleComplete}
                   onEdit={handleEditClick}

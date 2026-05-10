@@ -42,6 +42,8 @@ export default {
         'breathe-out': 'breatheOut 4s ease-in-out infinite alternate',
         'fade-in':     'fadeIn 0.3s ease-out',
         'slide-up':    'slideUp 0.3s ease-out',
+        'pop-in':      'popIn 0.35s ease-out forwards',
+        'pulse-bg':    'pulseBg 1.8s ease-in-out forwards',
       },
       keyframes: {
         breatheIn: {
@@ -59,6 +61,18 @@ export default {
         slideUp: {
           from: { opacity: '0', transform: 'translateY(12px)' },
           to:   { opacity: '1', transform: 'translateY(0)'    },
+        },
+        popIn: {
+          '0%':   { opacity: '0', transform: 'scale(0.96)' },
+          '60%':  { transform: 'scale(1.02)' },
+          '100%': { opacity: '1', transform: 'scale(1)' },
+        },
+        pulseBg: {
+          '0%':   { backgroundColor: 'rgba(166,196,166,0)' },
+          '20%':  { backgroundColor: 'rgba(166,196,166,0.3)' },
+          '45%':  { backgroundColor: 'rgba(166,196,166,0)' },
+          '65%':  { backgroundColor: 'rgba(166,196,166,0.2)' },
+          '100%': { backgroundColor: 'rgba(166,196,166,0)' },
         },
       },
       boxShadow: {

@@ -38,7 +38,7 @@ function DotsMenu({ onEdit, onDelete, onClose }) {
   )
 }
 
-export function WinCard({ win, index, isActive, onStart, onComplete, onEdit, onDelete, onFocus }) {
+export function WinCard({ win, index, isActive, isNew, onStart, onComplete, onEdit, onDelete, onFocus }) {
   const [menuOpen, setMenuOpen] = useState(false)
 
   const numClass = NUMBER_COLORS[index] ?? NUMBER_COLORS[0]
@@ -51,6 +51,7 @@ export function WinCard({ win, index, isActive, onStart, onComplete, onEdit, onD
 
   return (
     <div className={`relative rounded-2xl border border-stone-50 px-5 py-4 transition-all duration-300 ${cardClass}`}>
+      {isNew && <div className="absolute inset-0 rounded-2xl pointer-events-none task-added" />}
       <div className="flex items-start gap-4">
         {/* Number circle */}
         <button

@@ -28,3 +28,15 @@
     display: none;
   }
 }
+
+@keyframes taskAdded {
+  0%   { background-color: rgba(166, 196, 166, 0); }
+  25%  { background-color: rgba(166, 196, 166, 0.35); }
+  55%  { background-color: rgba(166, 196, 166, 0); }
+  75%  { background-color: rgba(166, 196, 166, 0.2); }
+  100% { background-color: rgba(166, 196, 166, 0); }
+}
+
+.task-added {
+  animation: taskAdded 1.8s ease-in-out forwards;
+}

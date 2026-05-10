@@ -38,13 +38,13 @@ function DotsMenu({ onEdit, onDelete, onClose }) {
   )
 }
 
-export function WinCard({ win, index, isActive, isNew, onStart, onComplete, onEdit, onDelete, onFocus }) {
+export function WinCard({ win, index, isActive, isNew, onStart, onComplete, onReactivate, onEdit, onDelete, onFocus }) {
   const [menuOpen, setMenuOpen] = useState(false)
 
   const numClass = NUMBER_COLORS[index] ?? NUMBER_COLORS[0]
 
   const cardClass = win.completed
-    ? 'opacity-60 bg-stone-50'
+    ? 'opacity-60 bg-stone-50 hover:opacity-80 transition-opacity'
     : isActive
     ? 'bg-white border-l-4 border-l-sage-400'
     : 'bg-white'
@@ -55,9 +55,9 @@ export function WinCard({ win, index, isActive, isNew, onStart, onComplete, onEd
       <div className="flex items-start gap-4">
         {/* Number circle */}
         <button
-          onClick={() => !win.completed && onComplete(win.id)}
-          title={win.completed ? 'Completed' : 'Mark complete'}
-          className={`flex-shrink-0 w-9 h-9 rounded-full border-2 flex items-center justify-center text-sm font-semibold transition-all duration-200 ${numClass} ${!win.completed ? 'hover:scale-110 cursor-pointer' : 'cursor-default'}`}
+          onClick={() => win.completed ? onReactivate(win.id) : onComplete(win.id)}
+          title={win.completed ? 'Mark as not done' : 'Mark complete'}
+          className={`flex-shrink-0 w-9 h-9 rounded-full border-2 flex items-center justify-center text-sm font-semibold transition-all duration-200 cursor-pointer ${numClass} ${win.completed ? 'hover:opacity-60 hover:scale-105' : 'hover:scale-110'}`}
         >
           {win.completed ? '✓' : index + 1}
         </button>
@@ -113,7 +113,15 @@ export function WinCard({ win, index, isActive, isNew, onStart, onComplete, onEd
           )}
 
           {win.completed && (
-            <span className="text-xs text-sage-500 font-medium flex-shrink-0 mt-1 sm:mt-0">Done 🌿</span>
+            <div className="flex items-center gap-2 mt-1 sm:mt-0 flex-shrink-0">
+              <span className="text-xs text-sage-500 font-medium">Done 🌿</span>
+              <button
+                onClick={() => onReactivate(win.id)}
+                className="text-xs text-stone-300 hover:text-stone-500 transition underline underline-offset-2"
+              >
+                Undo
+              </button>
+            </div>
           )}
         </div>
       </div>

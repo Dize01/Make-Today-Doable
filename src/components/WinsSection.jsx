@@ -2,7 +2,7 @@ import { useState, useRef } from 'react'
 import { WinCard, EmptyWinSlot } from './WinCard'
 import { AddWinModal } from './AddWinModal'
 
-export function WinsSection({ wins, startedCount, onStart, onComplete, onAdd, onEdit, onDelete, onFocus }) {
+export function WinsSection({ wins, startedCount, onStart, onComplete, onReactivate, onAdd, onEdit, onDelete, onFocus }) {
   const [showModal,   setShowModal]   = useState(false)
   const [editingWin,  setEditingWin]  = useState(null)
   const [activeWinId, setActiveWinId] = useState(null)
@@ -88,6 +88,7 @@ export function WinsSection({ wins, startedCount, onStart, onComplete, onAdd, on
                   isNew={highlightLast && win.id === wins[wins.length - 1]?.id}
                   onStart={() => handleStart(win)}
                   onComplete={handleComplete}
+                  onReactivate={onReactivate}
                   onEdit={handleEditClick}
                   onDelete={onDelete}
                   onFocus={onFocus}

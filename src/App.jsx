@@ -76,6 +76,10 @@ export default function App() {
     updateWin(id, { completed: true })
   }
 
+  function handleWinReactivate(id) {
+    updateWin(id, { completed: false, started: false })
+  }
+
   function handleWinEdit(id, patch) {
     updateWin(id, patch)
   }
@@ -176,6 +180,7 @@ export default function App() {
                   startedCount={startedCount}
                   onStart={handleWinStart}
                   onComplete={handleWinComplete}
+                  onReactivate={handleWinReactivate}
                   onAdd={addWin}
                   onEdit={handleWinEdit}
                   onDelete={deleteWin}

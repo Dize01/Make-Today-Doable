@@ -50,25 +50,25 @@ export function WinsSection({ wins, startedCount, onStart, onComplete, onReactiv
 
   return (
     <>
-      <div className="bg-white rounded-3xl border border-stone-100 p-6">
+      <div className="bg-white dark:bg-stone-800 rounded-3xl border border-stone-100 dark:border-stone-700 p-6">
         {/* Header */}
         <div className="flex items-start justify-between mb-4">
           <div>
             <div className="flex items-center gap-2">
-              <h2 className="font-semibold text-stone-900 text-base">Today's 3 Wins</h2>
+              <h2 className="font-semibold text-stone-900 dark:text-stone-100 text-base">Today's 3 Wins</h2>
               {wins.length > 0 && (
-                <span className="text-xs bg-sage-50 text-sage-600 border border-sage-100 px-2 py-0.5 rounded-full font-medium">
+                <span className="text-xs bg-sage-50 dark:bg-sage-900/30 text-sage-600 dark:text-sage-400 border border-sage-100 dark:border-sage-800 px-2 py-0.5 rounded-full font-medium">
                   {startedCount} of {wins.length} started
                 </span>
               )}
             </div>
-            <p className="text-stone-400 text-sm mt-0.5">
+            <p className="text-stone-400 dark:text-stone-500 text-sm mt-0.5">
               Pick up to 3 things that would make today feel like a win.
             </p>
           </div>
 
           <div className="text-right hidden sm:block">
-            <span className="text-xs text-stone-300 italic font-light" style={{ fontFamily: 'Georgia, serif' }}>
+            <span className="text-xs text-stone-300 dark:text-stone-600 italic font-light" style={{ fontFamily: 'Georgia, serif' }}>
               Less is more ✓
             </span>
           </div>
@@ -106,7 +106,7 @@ export function WinsSection({ wins, startedCount, onStart, onComplete, onReactiv
           })}
 
           {wins.length >= 3 && (
-            <p className="text-center text-xs text-stone-400 pt-1">
+            <p className="text-center text-xs text-stone-400 dark:text-stone-500 pt-1">
               Three wins is enough for today 🌱
             </p>
           )}

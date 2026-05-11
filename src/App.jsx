@@ -1,20 +1,22 @@
 import { useState } from 'react'
 import { useAppData } from './hooks/useAppData'
+import { useDarkMode } from './hooks/useDarkMode'
 import { formatDisplayDate, getGreeting, getGreetingEmoji, todayKey } from './utils/dateUtils'
 
-import { Sidebar }          from './components/Sidebar'
-import { EnergySelector }   from './components/EnergySelector'
-import { WinsSection }      from './components/WinsSection'
-import { FocusCard }        from './components/FocusCard'
-import { FocusModal }       from './components/FocusModal'
-import { OverwhelmedCard }  from './components/OverwhelmedCard'
-import { BreathingOverlay } from './components/BreathingOverlay'
-import { NewDayModal }      from './components/NewDayModal'
-import { HistoryPage }      from './components/HistoryPage'
-import { CalendarPage }     from './components/CalendarPage'
-import { RoutinesPage }     from './components/RoutinesPage'
-import { PrivacyPage }      from './components/PrivacyPage'
-import { TermsPage }        from './components/TermsPage'
+import { Sidebar }             from './components/Sidebar'
+import { EnergySelector }      from './components/EnergySelector'
+import { WinsSection }         from './components/WinsSection'
+import { FocusCard }           from './components/FocusCard'
+import { FocusModal }          from './components/FocusModal'
+import { OverwhelmedCard }     from './components/OverwhelmedCard'
+import { BreathingOverlay }    from './components/BreathingOverlay'
+import { NewDayModal }         from './components/NewDayModal'
+import { HistoryPage }         from './components/HistoryPage'
+import { CalendarPage }        from './components/CalendarPage'
+import { RoutinesPage }        from './components/RoutinesPage'
+import { PrivacyPage }         from './components/PrivacyPage'
+import { TermsPage }           from './components/TermsPage'
+import { ReleaseNotesPage }    from './components/ReleaseNotesPage'
 
 function RefreshIcon() {
   return (
@@ -41,6 +43,8 @@ function MenuIcon() {
 }
 
 export default function App() {
+  const [dark, setDark] = useDarkMode()
+
   const {
     data,
     showNewDayModal,
@@ -89,19 +93,21 @@ export default function App() {
   }
 
   return (
-    <div className="min-h-screen bg-white flex">
+    <div className="min-h-screen bg-white dark:bg-stone-900 flex transition-colors duration-200">
       {/* Sidebar */}
       <Sidebar
         activeNav={activeNav}
         onNavChange={setActiveNav}
         isMobileOpen={mobileSidebarOpen}
         onMobileClose={() => setMobileSidebarOpen(false)}
+        dark={dark}
+        onToggleDark={() => setDark(d => !d)}
       />
 
       {/* Main content */}
       <div className="flex-1 flex flex-col min-h-screen lg:ml-0">
         {/* Mobile top bar */}
-        <div className="lg:hidden flex items-center justify-between px-4 py-3 bg-stone-50 border-b border-stone-200 sticky top-0 z-10">
+        <div className="lg:hidden flex items-center justify-between px-4 py-3 bg-stone-50 dark:bg-stone-950 border-b border-stone-200 dark:border-stone-800 sticky top-0 z-10">
           <button
             onClick={() => setMobileSidebarOpen(true)}
             className="p-1.5 rounded-xl text-stone-500 hover:bg-stone-100 transition"
@@ -120,6 +126,7 @@ export default function App() {
 
             {activeNav === 'privacy'  && <PrivacyPage />}
             {activeNav === 'terms'    && <TermsPage />}
+            {activeNav === 'release'  && <ReleaseNotesPage />}
             {activeNav === 'history'  && <HistoryPage history={history} />}
             {activeNav === 'routines' && (
               <RoutinesPage
@@ -141,20 +148,20 @@ export default function App() {
               <div className="flex flex-col gap-6 p-4 sm:p-6 lg:p-8">
                 {/* Header */}
                 <header className="space-y-1">
-                  <p className="text-stone-400 text-sm flex items-center gap-1.5">
+                  <p className="text-stone-400 dark:text-stone-500 text-sm flex items-center gap-1.5">
                     <span>{getGreetingEmoji()}</span>
                     {getGreeting()} 👋
                   </p>
                   <div className="flex items-end justify-between flex-wrap gap-3">
                     <div>
-                      <h1 className="text-3xl sm:text-4xl font-bold text-stone-800 leading-tight tracking-tight">
+                      <h1 className="text-3xl sm:text-4xl font-bold text-stone-800 dark:text-stone-100 leading-tight tracking-tight">
                         Let's make today doable.
                       </h1>
-                      <p className="text-stone-400 text-sm mt-1">Small steps. Real progress.</p>
+                      <p className="text-stone-400 dark:text-stone-500 text-sm mt-1">Small steps. Real progress.</p>
                     </div>
 
                     <div className="flex items-center gap-2">
-                      <div className="flex items-center gap-1.5 px-3 py-2 rounded-2xl border border-stone-200 bg-white text-stone-600 text-sm cursor-default select-none">
+                      <div className="flex items-center gap-1.5 px-3 py-2 rounded-2xl border border-stone-200 dark:border-stone-700 bg-white dark:bg-stone-800 text-stone-600 dark:text-stone-300 text-sm cursor-default select-none">
                         <CalendarIcon />
                         <span className="font-medium whitespace-nowrap">
                           {formatDisplayDate(data.date || todayKey())}
@@ -162,7 +169,7 @@ export default function App() {
                       </div>
                       <button
                         onClick={handleNewDay}
-                        className="flex items-center gap-1.5 px-3 py-2 rounded-2xl border border-stone-200 bg-white text-stone-500 text-sm hover:bg-stone-50 hover:text-stone-700 transition"
+                        className="flex items-center gap-1.5 px-3 py-2 rounded-2xl border border-stone-200 dark:border-stone-700 bg-white dark:bg-stone-800 text-stone-500 dark:text-stone-400 text-sm hover:bg-stone-50 dark:hover:bg-stone-700 hover:text-stone-700 dark:hover:text-stone-200 transition"
                       >
                         <RefreshIcon />
                         <span className="hidden sm:inline">New day</span>

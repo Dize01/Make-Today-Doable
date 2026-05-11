@@ -100,38 +100,38 @@ export function TermsPage() {
     <div className="flex flex-col gap-6 p-4 sm:p-6 lg:p-8 max-w-2xl mx-auto w-full">
 
       <header className="space-y-1 pt-2">
-        <p className="text-stone-400 text-sm">📄 Plain and simple</p>
-        <h1 className="text-3xl sm:text-4xl font-bold text-stone-800 leading-tight tracking-tight">
+        <p className="text-stone-400 dark:text-stone-500 text-sm">📄 Plain and simple</p>
+        <h1 className="text-3xl sm:text-4xl font-bold text-stone-800 dark:text-stone-100 leading-tight tracking-tight">
           Terms and Conditions
         </h1>
-        <p className="text-stone-400 text-sm">Last updated: May 8, 2026</p>
+        <p className="text-stone-400 dark:text-stone-500 text-sm">Last updated: May 8, 2026</p>
       </header>
 
-      <p className="text-sm text-stone-600 leading-relaxed">
+      <p className="text-sm text-stone-600 dark:text-stone-400 leading-relaxed">
         By using Make Today Doable, you agree to the following Terms and Conditions.
       </p>
 
-      <div className="space-y-6 text-sm text-stone-600 leading-relaxed">
+      <div className="space-y-6 text-sm text-stone-600 dark:text-stone-400 leading-relaxed">
         {SECTIONS.map(({ title, content }) => (
           <section key={title} className="space-y-2">
-            <h2 className="font-semibold text-stone-800 text-base">{title}</h2>
+            <h2 className="font-semibold text-stone-800 dark:text-stone-100 text-base">{title}</h2>
             {content}
           </section>
         ))}
 
         <section className="space-y-2">
-          <h2 className="font-semibold text-stone-800 text-base">11. Contact</h2>
+          <h2 className="font-semibold text-stone-800 dark:text-stone-100 text-base">11. Contact</h2>
           <p>For questions regarding these Terms, contact:</p>
-          <p className="text-stone-500">
+          <p className="text-stone-500 dark:text-stone-400">
             Make Today Doable<br />
-            <a href="mailto:emc.ai.studio@gmail.com" className="text-sage-600 hover:underline">
+            <a href="mailto:emc.ai.studio@gmail.com" className="text-sage-600 dark:text-sage-400 hover:underline">
               emc.ai.studio@gmail.com
             </a>
           </p>
         </section>
       </div>
 
-      <p className="text-center text-xs text-stone-300 pb-4">
+      <p className="text-center text-xs text-stone-300 dark:text-stone-600 pb-4">
         Small steps, fair terms. 🌱
       </p>
     </div>

@@ -28,14 +28,14 @@ function DayCard({ entry }) {
   const summary = completionSummary(entry.wins)
 
   return (
-    <div className="bg-white rounded-2xl border border-stone-100 p-5 space-y-4">
+    <div className="bg-white dark:bg-stone-800 rounded-2xl border border-stone-100 dark:border-stone-700 p-5 space-y-4">
       {/* Top row */}
       <div className="flex items-start justify-between gap-3 flex-wrap">
         <div>
-          <p className="font-semibold text-stone-700 text-sm">
+          <p className="font-semibold text-stone-700 dark:text-stone-200 text-sm">
             {formatDisplayDate(entry.date)}
           </p>
-          <p className="text-xs text-stone-400 mt-0.5 flex items-center gap-1">
+          <p className="text-xs text-stone-400 dark:text-stone-500 mt-0.5 flex items-center gap-1">
             <span>{summary.icon}</span>
             <span>{summary.text} completed</span>
           </p>
@@ -56,12 +56,12 @@ function DayCard({ entry }) {
             <li key={i} className="flex items-start gap-2.5">
               <span className={`mt-0.5 flex-shrink-0 w-4 h-4 rounded-full border flex items-center justify-center text-xs
                 ${win.completed
-                  ? 'bg-sage-100 border-sage-200 text-sage-600'
-                  : 'border-stone-200 text-stone-300'}`}
+                  ? 'bg-sage-100 dark:bg-sage-900/40 border-sage-200 dark:border-sage-800 text-sage-600 dark:text-sage-400'
+                  : 'border-stone-200 dark:border-stone-600 text-stone-300'}`}
               >
                 {win.completed ? '✓' : ''}
               </span>
-              <span className={`text-sm leading-snug ${win.completed ? 'text-stone-600' : 'text-stone-300 line-through'}`}>
+              <span className={`text-sm leading-snug ${win.completed ? 'text-stone-600 dark:text-stone-300' : 'text-stone-300 dark:text-stone-600 line-through'}`}>
                 {win.title}
               </span>
             </li>
@@ -71,8 +71,8 @@ function DayCard({ entry }) {
 
       {/* Reflection */}
       {entry.reflection && (
-        <div className="border-t border-stone-50 pt-3">
-          <p className="text-xs text-stone-400 italic leading-relaxed">
+        <div className="border-t border-stone-50 dark:border-stone-700 pt-3">
+          <p className="text-xs text-stone-400 dark:text-stone-500 italic leading-relaxed">
             "{entry.reflection}"
           </p>
         </div>
@@ -84,15 +84,15 @@ function DayCard({ entry }) {
 function EmptyState() {
   return (
     <div className="flex flex-col items-center justify-center py-20 text-center px-6">
-      <div className="w-16 h-16 rounded-2xl bg-sage-50 border border-sage-100 flex items-center justify-center mb-5">
+      <div className="w-16 h-16 rounded-2xl bg-sage-50 dark:bg-sage-900/30 border border-sage-100 dark:border-sage-900 flex items-center justify-center mb-5">
         <svg viewBox="0 0 24 24" fill="none" stroke="#7da67d" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-8 h-8">
           <path d="M12 22V12" />
           <path d="M12 12C12 12 7 10 5 6c4 0 7 2 7 6z" />
           <path d="M12 12C12 12 17 10 19 6c-4 0-7 2-7 6z" />
         </svg>
       </div>
-      <p className="text-stone-600 font-medium text-sm mb-1">Your history will grow here.</p>
-      <p className="text-stone-400 text-xs leading-relaxed max-w-xs">
+      <p className="text-stone-600 dark:text-stone-300 font-medium text-sm mb-1">Your history will grow here.</p>
+      <p className="text-stone-400 dark:text-stone-500 text-xs leading-relaxed max-w-xs">
         Each time you start a fresh day, your wins get saved here. No pressure — it fills up naturally.
       </p>
     </div>
@@ -105,11 +105,11 @@ export function HistoryPage({ history = [] }) {
 
       {/* Header */}
       <header className="space-y-1 pt-2">
-        <p className="text-stone-400 text-sm">🌿 Looking back gently</p>
-        <h1 className="text-3xl sm:text-4xl font-bold text-stone-800 leading-tight tracking-tight">
+        <p className="text-stone-400 dark:text-stone-500 text-sm">🌿 Looking back gently</p>
+        <h1 className="text-3xl sm:text-4xl font-bold text-stone-800 dark:text-stone-100 leading-tight tracking-tight">
           Your small wins matter.
         </h1>
-        <p className="text-stone-400 text-sm">
+        <p className="text-stone-400 dark:text-stone-500 text-sm">
           Progress doesn't need to be perfect to count.
         </p>
       </header>
@@ -123,7 +123,7 @@ export function HistoryPage({ history = [] }) {
             <div key={entry.date}>
               <DayCard entry={entry} />
               {i < history.length - 1 && i % 2 === 0 && (
-                <p className="text-center text-xs text-stone-300 italic py-1">
+                <p className="text-center text-xs text-stone-300 dark:text-stone-600 italic py-1">
                   {MICROCOPY[Math.floor(i / 2) % MICROCOPY.length]}
                 </p>
               )}
@@ -133,7 +133,7 @@ export function HistoryPage({ history = [] }) {
       )}
 
       {history.length > 0 && (
-        <p className="text-center text-xs text-stone-300 pb-4">
+        <p className="text-center text-xs text-stone-300 dark:text-stone-600 pb-4">
           Every day you opened this app was a small act of care for yourself. 🌱
         </p>
       )}

@@ -54,16 +54,16 @@ function DayCell({ day, entry, isToday, isSelected, onClick }) {
       className={[
         'relative flex flex-col items-center justify-between rounded-xl p-1.5 sm:p-2 aspect-square text-left transition-all duration-150 border',
         isSelected
-          ? 'bg-sage-50 border-sage-200'
+          ? 'bg-sage-50 dark:bg-sage-900/30 border-sage-200 dark:border-sage-800'
           : isToday
-          ? 'bg-white border-sage-200 ring-1 ring-sage-200'
+          ? 'bg-white dark:bg-stone-700 border-sage-200 dark:border-sage-700 ring-1 ring-sage-200 dark:ring-sage-700'
           : hasData
-          ? 'bg-white border-stone-100 hover:bg-stone-50 hover:border-stone-200'
-          : 'bg-white border-stone-50 hover:bg-stone-50',
+          ? 'bg-white dark:bg-stone-800 border-stone-100 dark:border-stone-700 hover:bg-stone-50 dark:hover:bg-stone-700 hover:border-stone-200 dark:hover:border-stone-600'
+          : 'bg-white dark:bg-stone-800 border-stone-50 dark:border-stone-700 hover:bg-stone-50 dark:hover:bg-stone-700',
       ].join(' ')}
     >
       <span className={`text-xs font-medium self-start leading-none
-        ${isSelected ? 'text-sage-700' : isToday ? 'text-sage-600' : 'text-stone-500'}`}>
+        ${isSelected ? 'text-sage-700 dark:text-sage-400' : isToday ? 'text-sage-600 dark:text-sage-400' : 'text-stone-500 dark:text-stone-400'}`}>
         {day}
       </span>
 
@@ -84,8 +84,8 @@ function DayDetail({ entry, dateStr }) {
   if (!dateStr) {
     return (
       <div className="flex flex-col items-center justify-center h-full py-12 text-center px-4">
-        <p className="text-stone-300 text-sm">Select a day to see details</p>
-        <p className="text-stone-200 text-xs mt-1">Small progress still counts.</p>
+        <p className="text-stone-300 dark:text-stone-600 text-sm">Select a day to see details</p>
+        <p className="text-stone-200 dark:text-stone-700 text-xs mt-1">Small progress still counts.</p>
       </div>
     )
   }
@@ -98,10 +98,10 @@ function DayDetail({ entry, dateStr }) {
   if (!entry) {
     return (
       <div className="p-5 space-y-3">
-        <p className="text-sm font-semibold text-stone-700">{label}</p>
+        <p className="text-sm font-semibold text-stone-700 dark:text-stone-200">{label}</p>
         <div className="pt-4 text-center">
-          <p className="text-stone-300 text-sm italic">Rest day.</p>
-          <p className="text-stone-200 text-xs mt-1">Rest days matter too.</p>
+          <p className="text-stone-300 dark:text-stone-600 text-sm italic">Rest day.</p>
+          <p className="text-stone-200 dark:text-stone-700 text-xs mt-1">Rest days matter too.</p>
         </div>
       </div>
     )
@@ -114,9 +114,9 @@ function DayDetail({ entry, dateStr }) {
   return (
     <div className="p-5 space-y-4 animate-fade-in">
       <div>
-        <p className="text-sm font-semibold text-stone-700">{label}</p>
+        <p className="text-sm font-semibold text-stone-700 dark:text-stone-200">{label}</p>
         {plant && (
-          <p className="text-xs text-stone-400 mt-0.5">
+          <p className="text-xs text-stone-400 dark:text-stone-500 mt-0.5">
             {plant} {completed} of {entry.wins.length} wins completed
           </p>
         )}
@@ -130,14 +130,14 @@ function DayDetail({ entry, dateStr }) {
 
       {entry.wins.length > 0 && (
         <div className="space-y-1.5">
-          <p className="text-xs text-stone-400 font-medium uppercase tracking-wide">Wins</p>
+          <p className="text-xs text-stone-400 dark:text-stone-500 font-medium uppercase tracking-wide">Wins</p>
           {entry.wins.map((win, i) => (
             <div key={i} className="flex items-start gap-2">
               <span className={`mt-0.5 w-4 h-4 flex-shrink-0 rounded-full border flex items-center justify-center text-xs
-                ${win.completed ? 'bg-sage-100 border-sage-200 text-sage-600' : 'border-stone-200'}`}>
+                ${win.completed ? 'bg-sage-100 dark:bg-sage-900/40 border-sage-200 dark:border-sage-800 text-sage-600 dark:text-sage-400' : 'border-stone-200 dark:border-stone-600'}`}>
                 {win.completed ? '✓' : ''}
               </span>
-              <span className={`text-sm leading-snug ${win.completed ? 'text-stone-600' : 'text-stone-300 line-through'}`}>
+              <span className={`text-sm leading-snug ${win.completed ? 'text-stone-600 dark:text-stone-300' : 'text-stone-300 dark:text-stone-600 line-through'}`}>
                 {win.title}
               </span>
             </div>
@@ -146,13 +146,13 @@ function DayDetail({ entry, dateStr }) {
       )}
 
       {entry.reflection && (
-        <div className="bg-stone-50 rounded-xl px-3 py-3 border border-stone-100">
-          <p className="text-xs text-stone-400 italic leading-relaxed">"{entry.reflection}"</p>
+        <div className="bg-stone-50 dark:bg-stone-900/50 rounded-xl px-3 py-3 border border-stone-100 dark:border-stone-700">
+          <p className="text-xs text-stone-400 dark:text-stone-500 italic leading-relaxed">"{entry.reflection}"</p>
         </div>
       )}
 
       {!entry.reflection && (
-        <p className="text-xs text-stone-300 italic">No reflection noted.</p>
+        <p className="text-xs text-stone-300 dark:text-stone-600 italic">No reflection noted.</p>
       )}
     </div>
   )
@@ -196,13 +196,13 @@ export function CalendarPage({ history = [], todayEntry }) {
 
       {/* Header */}
       <header className="space-y-1 pt-2">
-        <p className="text-stone-400 text-sm">🌿 A gentle view of your days</p>
+        <p className="text-stone-400 dark:text-stone-500 text-sm">🌿 A gentle view of your days</p>
         <div className="flex items-end justify-between flex-wrap gap-3">
           <div>
-            <h1 className="text-3xl sm:text-4xl font-bold text-stone-800 leading-tight tracking-tight">
+            <h1 className="text-3xl sm:text-4xl font-bold text-stone-800 dark:text-stone-100 leading-tight tracking-tight">
               Your month, softly remembered.
             </h1>
-            <p className="text-stone-400 text-sm mt-1">Progress doesn't need to be perfect to matter.</p>
+            <p className="text-stone-400 dark:text-stone-500 text-sm mt-1">Progress doesn't need to be perfect to matter.</p>
           </div>
         </div>
       </header>
@@ -210,24 +210,24 @@ export function CalendarPage({ history = [], todayEntry }) {
       <div className="flex gap-5 items-start">
 
         {/* Calendar panel */}
-        <div className="flex-1 min-w-0 bg-white rounded-3xl border border-stone-100 p-5 space-y-4">
+        <div className="flex-1 min-w-0 bg-white dark:bg-stone-800 rounded-3xl border border-stone-100 dark:border-stone-700 p-5 space-y-4">
 
           {/* Month nav */}
           <div className="flex items-center justify-between">
             <button
               onClick={prevMonth}
-              className="w-8 h-8 flex items-center justify-center rounded-xl text-stone-400 hover:bg-stone-100 hover:text-stone-600 transition"
+              className="w-8 h-8 flex items-center justify-center rounded-xl text-stone-400 dark:text-stone-500 hover:bg-stone-100 dark:hover:bg-stone-700 hover:text-stone-600 dark:hover:text-stone-300 transition"
             >
               <ChevronLeft />
             </button>
 
-            <p className="text-sm font-semibold text-stone-700">
+            <p className="text-sm font-semibold text-stone-700 dark:text-stone-200">
               {MONTH_NAMES[viewMonth]} {viewYear}
             </p>
 
             <button
               onClick={nextMonth}
-              className="w-8 h-8 flex items-center justify-center rounded-xl text-stone-400 hover:bg-stone-100 hover:text-stone-600 transition"
+              className="w-8 h-8 flex items-center justify-center rounded-xl text-stone-400 dark:text-stone-500 hover:bg-stone-100 dark:hover:bg-stone-700 hover:text-stone-600 dark:hover:text-stone-300 transition"
             >
               <ChevronRight />
             </button>
@@ -236,7 +236,7 @@ export function CalendarPage({ history = [], todayEntry }) {
           {/* Day labels */}
           <div className="grid grid-cols-7 gap-1">
             {DAY_LABELS.map(d => (
-              <div key={d} className="text-center text-xs text-stone-300 font-medium py-1">
+              <div key={d} className="text-center text-xs text-stone-300 dark:text-stone-600 font-medium py-1">
                 {d}
               </div>
             ))}
@@ -261,10 +261,10 @@ export function CalendarPage({ history = [], todayEntry }) {
           </div>
 
           {/* Legend */}
-          <div className="flex items-center gap-4 pt-1 border-t border-stone-50 flex-wrap">
-            <p className="text-xs text-stone-300">Legend:</p>
+          <div className="flex items-center gap-4 pt-1 border-t border-stone-50 dark:border-stone-700 flex-wrap">
+            <p className="text-xs text-stone-300 dark:text-stone-600">Legend:</p>
             {[['🌱','1 win'],['🌿','2 wins'],['🌳','3 wins']].map(([icon, label]) => (
-              <span key={label} className="text-xs text-stone-300 flex items-center gap-1">
+              <span key={label} className="text-xs text-stone-300 dark:text-stone-600 flex items-center gap-1">
                 <span>{icon}</span>{label}
               </span>
             ))}
@@ -272,19 +272,19 @@ export function CalendarPage({ history = [], todayEntry }) {
         </div>
 
         {/* Detail panel — desktop only */}
-        <div className="hidden lg:block w-64 flex-shrink-0 bg-white rounded-3xl border border-stone-100 min-h-48">
+        <div className="hidden lg:block w-64 flex-shrink-0 bg-white dark:bg-stone-800 rounded-3xl border border-stone-100 dark:border-stone-700 min-h-48">
           <DayDetail entry={selectedEntry} dateStr={selected} />
         </div>
       </div>
 
       {/* Detail card — mobile/tablet, shown when a day is selected */}
       {selected && (
-        <div className="lg:hidden bg-white rounded-3xl border border-stone-100 animate-slide-up">
+        <div className="lg:hidden bg-white dark:bg-stone-800 rounded-3xl border border-stone-100 dark:border-stone-700 animate-slide-up">
           <DayDetail entry={selectedEntry} dateStr={selected} />
         </div>
       )}
 
-      <p className="text-center text-xs text-stone-300 pb-4">
+      <p className="text-center text-xs text-stone-300 dark:text-stone-600 pb-4">
         Not every day needs to be productive. Showing up is enough. 🌱
       </p>
     </div>

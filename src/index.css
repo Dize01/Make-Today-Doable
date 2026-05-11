@@ -14,6 +14,10 @@
     min-height: 100dvh;
   }
 
+  .dark body {
+    @apply bg-stone-900 text-stone-300;
+  }
+
   * {
     box-sizing: border-box;
   }

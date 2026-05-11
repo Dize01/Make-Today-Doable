@@ -2,7 +2,7 @@ export function FocusCard({ wins, onStartFocus }) {
   const activeWin = wins.find(w => w.started && !w.completed) ?? wins.find(w => !w.completed)
 
   return (
-    <div className="relative rounded-3xl overflow-hidden border border-stone-100 bg-gradient-to-br from-sage-50 to-emerald-50 p-6">
+    <div className="relative rounded-3xl overflow-hidden border border-stone-100 dark:border-stone-700 bg-gradient-to-br from-sage-50 to-emerald-50 dark:from-sage-900/20 dark:to-emerald-900/20 p-6">
       {/* Decorative leaf illustration */}
       <div className="absolute bottom-0 right-0 text-8xl opacity-10 select-none pointer-events-none">
         🌿
@@ -11,8 +11,8 @@ export function FocusCard({ wins, onStartFocus }) {
       <div className="flex items-start gap-3 mb-4">
         <span className="text-xl">🍃</span>
         <div>
-          <h3 className="font-semibold text-stone-700 text-sm">Need to focus?</h3>
-          <p className="text-xs text-stone-400 mt-0.5">
+          <h3 className="font-semibold text-stone-700 dark:text-stone-200 text-sm">Need to focus?</h3>
+          <p className="text-xs text-stone-400 dark:text-stone-500 mt-0.5">
             Choose a task and start a focus session.
           </p>
         </div>

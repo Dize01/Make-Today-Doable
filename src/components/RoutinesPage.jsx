@@ -20,8 +20,8 @@ const PRESET_ROUTINES = [
       { title: 'Clean one small thing',     tinyStep: 'Pick the nearest thing to you'      },
     ],
     microcopy: 'Tiny progress is enough today.',
-    cardCls:  'bg-blue-50/40    border-blue-100',
-    iconCls:  'bg-blue-100      text-blue-500',
+    cardCls:  'bg-blue-50/40 border-blue-100 dark:bg-blue-900/20 dark:border-blue-900',
+    iconCls:  'bg-blue-100 text-blue-500 dark:bg-blue-900/40 dark:text-blue-400',
   },
   {
     id:           'deep-focus',
@@ -36,8 +36,8 @@ const PRESET_ROUTINES = [
       { title: 'Focus for 25 minutes',      tinyStep: 'Just start the timer'               },
     ],
     microcopy: 'One thing done well is enough.',
-    cardCls:  'bg-amber-50/40   border-amber-100',
-    iconCls:  'bg-amber-100     text-amber-500',
+    cardCls:  'bg-amber-50/40 border-amber-100 dark:bg-amber-900/20 dark:border-amber-900',
+    iconCls:  'bg-amber-100 text-amber-500 dark:bg-amber-900/40 dark:text-amber-400',
   },
   {
     id:           'brain-fog',
@@ -52,8 +52,8 @@ const PRESET_ROUTINES = [
       { title: 'Start for just 5 minutes',  tinyStep: 'Set a timer and begin'              },
     ],
     microcopy: 'Clarity comes from starting, not waiting.',
-    cardCls:  'bg-lavender-50/60 border-lavender-100',
-    iconCls:  'bg-lavender-100   text-lavender-500',
+    cardCls:  'bg-lavender-50/60 border-lavender-100 dark:bg-purple-900/20 dark:border-purple-900',
+    iconCls:  'bg-lavender-100 text-lavender-500 dark:bg-purple-900/40 dark:text-purple-400',
   },
   {
     id:           'recovery',
@@ -68,8 +68,8 @@ const PRESET_ROUTINES = [
       { title: 'One tiny task only',        tinyStep: 'The smallest thing on your mind'    },
     ],
     microcopy: 'Rest and recovery are productive too.',
-    cardCls:  'bg-stone-50      border-stone-100',
-    iconCls:  'bg-stone-100     text-stone-500',
+    cardCls:  'bg-stone-50 border-stone-100 dark:bg-stone-800 dark:border-stone-700',
+    iconCls:  'bg-stone-100 text-stone-500 dark:bg-stone-700 dark:text-stone-400',
   },
   {
     id:           'sunday-reset',
@@ -84,8 +84,8 @@ const PRESET_ROUTINES = [
       { title: 'Tidy one surface',          tinyStep: 'Pick the messiest spot'             },
     ],
     microcopy: 'A little reset goes a long way.',
-    cardCls:  'bg-sage-50/50    border-sage-100',
-    iconCls:  'bg-sage-100      text-sage-600',
+    cardCls:  'bg-sage-50/50 border-sage-100 dark:bg-sage-900/20 dark:border-sage-900',
+    iconCls:  'bg-sage-100 text-sage-600 dark:bg-sage-900/40 dark:text-sage-400',
   },
 ]
 
@@ -120,32 +120,32 @@ function CreateModal({ onSave, onClose }) {
       focusMinutes: focus,
       tasks:        validTasks.map(t => ({ title: t.title.trim(), tinyStep: t.tinyStep.trim() })),
       microcopy:    'You built this one yourself.',
-      cardCls:      'bg-sage-50/40 border-sage-100',
-      iconCls:      'bg-sage-100   text-sage-600',
+      cardCls:      'bg-sage-50/40 border-sage-100 dark:bg-sage-900/20 dark:border-sage-900',
+      iconCls:      'bg-sage-100 text-sage-600 dark:bg-sage-900/40 dark:text-sage-400',
     })
     onClose()
   }
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/20 backdrop-blur-sm animate-fade-in">
-      <div className="bg-white rounded-3xl w-full max-w-sm max-h-[90dvh] overflow-y-auto animate-slide-up">
-        <div className="flex items-center justify-between px-6 pt-6 pb-4 border-b border-stone-100">
-          <h2 className="font-semibold text-stone-800 text-base">Create a routine</h2>
-          <button onClick={onClose} className="w-8 h-8 flex items-center justify-center rounded-xl text-stone-400 hover:bg-stone-100 transition text-xl">×</button>
+      <div className="bg-white dark:bg-stone-800 rounded-3xl w-full max-w-sm max-h-[90dvh] overflow-y-auto animate-slide-up">
+        <div className="flex items-center justify-between px-6 pt-6 pb-4 border-b border-stone-100 dark:border-stone-700">
+          <h2 className="font-semibold text-stone-800 dark:text-stone-100 text-base">Create a routine</h2>
+          <button onClick={onClose} className="w-8 h-8 flex items-center justify-center rounded-xl text-stone-400 dark:text-stone-500 hover:bg-stone-100 dark:hover:bg-stone-700 transition text-xl">×</button>
         </div>
 
         <form onSubmit={handleSave} className="px-6 py-5 space-y-5">
 
           {/* Icon picker */}
           <div>
-            <p className="text-xs text-stone-400 font-medium mb-2">Pick an icon</p>
+            <p className="text-xs text-stone-400 dark:text-stone-500 font-medium mb-2">Pick an icon</p>
             <div className="flex flex-wrap gap-2">
               {ICON_OPTIONS.map(em => (
                 <button
                   key={em} type="button"
                   onClick={() => setIcon(em)}
                   className={`w-9 h-9 rounded-xl text-lg flex items-center justify-center transition border
-                    ${icon === em ? 'bg-sage-100 border-sage-200' : 'bg-stone-50 border-stone-100 hover:bg-stone-100'}`}
+                    ${icon === em ? 'bg-sage-100 border-sage-200 dark:bg-sage-900/40 dark:border-sage-800' : 'bg-stone-50 dark:bg-stone-700 border-stone-100 dark:border-stone-600 hover:bg-stone-100 dark:hover:bg-stone-600'}`}
                 >
                   {em}
                 </button>
@@ -155,43 +155,43 @@ function CreateModal({ onSave, onClose }) {
 
           {/* Name */}
           <div>
-            <label className="block text-xs text-stone-400 font-medium mb-1.5">Routine name</label>
+            <label className="block text-xs text-stone-400 dark:text-stone-500 font-medium mb-1.5">Routine name</label>
             <input
               required value={title} onChange={e => setTitle(e.target.value)}
               placeholder="e.g. Morning Kickstart"
               maxLength={50}
-              className="w-full px-4 py-2.5 rounded-xl border border-stone-200 bg-stone-50 text-stone-800 text-sm placeholder-stone-300 focus:outline-none focus:ring-2 focus:ring-sage-200 transition"
+              className="w-full px-4 py-2.5 rounded-xl border border-stone-200 dark:border-stone-600 bg-stone-50 dark:bg-stone-900 text-stone-800 dark:text-stone-100 text-sm placeholder-stone-300 dark:placeholder-stone-600 focus:outline-none focus:ring-2 focus:ring-sage-200 dark:focus:ring-sage-800 transition"
             />
           </div>
 
           {/* Description */}
           <div>
-            <label className="block text-xs text-stone-400 font-medium mb-1.5">Short description <span className="text-stone-300 font-normal">(optional)</span></label>
+            <label className="block text-xs text-stone-400 dark:text-stone-500 font-medium mb-1.5">Short description <span className="text-stone-300 dark:text-stone-600 font-normal">(optional)</span></label>
             <input
               value={desc} onChange={e => setDesc(e.target.value)}
               placeholder="When is this routine helpful?"
               maxLength={80}
-              className="w-full px-4 py-2.5 rounded-xl border border-stone-200 bg-stone-50 text-stone-800 text-sm placeholder-stone-300 focus:outline-none focus:ring-2 focus:ring-sage-200 transition"
+              className="w-full px-4 py-2.5 rounded-xl border border-stone-200 dark:border-stone-600 bg-stone-50 dark:bg-stone-900 text-stone-800 dark:text-stone-100 text-sm placeholder-stone-300 dark:placeholder-stone-600 focus:outline-none focus:ring-2 focus:ring-sage-200 dark:focus:ring-sage-800 transition"
             />
           </div>
 
           {/* Tasks */}
           <div>
-            <p className="text-xs text-stone-400 font-medium mb-2">Tasks (up to 3)</p>
+            <p className="text-xs text-stone-400 dark:text-stone-500 font-medium mb-2">Tasks (up to 3)</p>
             <div className="space-y-3">
               {tasks.map((t, i) => (
-                <div key={i} className="space-y-1.5 bg-stone-50 rounded-xl p-3 border border-stone-100">
+                <div key={i} className="space-y-1.5 bg-stone-50 dark:bg-stone-900/50 rounded-xl p-3 border border-stone-100 dark:border-stone-700">
                   <input
                     value={t.title} onChange={e => setTaskField(i, 'title', e.target.value)}
                     placeholder={`Task ${i + 1}`}
                     maxLength={60}
-                    className="w-full px-3 py-2 rounded-lg border border-stone-200 bg-white text-stone-800 text-sm placeholder-stone-300 focus:outline-none focus:ring-2 focus:ring-sage-200 transition"
+                    className="w-full px-3 py-2 rounded-lg border border-stone-200 dark:border-stone-600 bg-white dark:bg-stone-800 text-stone-800 dark:text-stone-100 text-sm placeholder-stone-300 dark:placeholder-stone-600 focus:outline-none focus:ring-2 focus:ring-sage-200 dark:focus:ring-sage-800 transition"
                   />
                   <input
                     value={t.tinyStep} onChange={e => setTaskField(i, 'tinyStep', e.target.value)}
                     placeholder="Tiny first step (optional)"
                     maxLength={80}
-                    className="w-full px-3 py-2 rounded-lg border border-stone-200 bg-white text-stone-700 text-xs placeholder-stone-300 focus:outline-none focus:ring-2 focus:ring-sage-200 transition"
+                    className="w-full px-3 py-2 rounded-lg border border-stone-200 dark:border-stone-600 bg-white dark:bg-stone-800 text-stone-700 dark:text-stone-300 text-xs placeholder-stone-300 dark:placeholder-stone-600 focus:outline-none focus:ring-2 focus:ring-sage-200 dark:focus:ring-sage-800 transition"
                   />
                 </div>
               ))}
@@ -200,7 +200,7 @@ function CreateModal({ onSave, onClose }) {
 
           {/* Energy */}
           <div>
-            <p className="text-xs text-stone-400 font-medium mb-2">Best for</p>
+            <p className="text-xs text-stone-400 dark:text-stone-500 font-medium mb-2">Best for</p>
             <div className="flex gap-2">
               {(['low','medium','high']).map(lvl => {
                 const b = ENERGY_LABEL[lvl]
@@ -208,7 +208,7 @@ function CreateModal({ onSave, onClose }) {
                   <button key={lvl} type="button"
                     onClick={() => setEnergy(lvl)}
                     className={`flex-1 py-2 rounded-xl border text-xs font-medium transition flex items-center justify-center gap-1
-                      ${energy === lvl ? b.cls : 'bg-white border-stone-200 text-stone-400 hover:bg-stone-50'}`}
+                      ${energy === lvl ? b.cls : 'bg-white dark:bg-stone-700 border-stone-200 dark:border-stone-600 text-stone-400 dark:text-stone-400 hover:bg-stone-50 dark:hover:bg-stone-600'}`}
                   >
                     {b.icon} {b.label.split(' ')[0]}
                   </button>
@@ -219,13 +219,13 @@ function CreateModal({ onSave, onClose }) {
 
           {/* Focus time */}
           <div>
-            <p className="text-xs text-stone-400 font-medium mb-2">Focus time</p>
+            <p className="text-xs text-stone-400 dark:text-stone-500 font-medium mb-2">Focus time</p>
             <div className="flex gap-2">
               {FOCUS_OPTIONS.map(min => (
                 <button key={min} type="button"
                   onClick={() => setFocus(min)}
                   className={`flex-1 py-2 rounded-xl border text-xs font-medium transition
-                    ${focus === min ? 'bg-sage-50 border-sage-200 text-sage-700' : 'bg-white border-stone-200 text-stone-400 hover:bg-stone-50'}`}
+                    ${focus === min ? 'bg-sage-50 border-sage-200 text-sage-700 dark:bg-sage-900/30 dark:border-sage-800 dark:text-sage-400' : 'bg-white dark:bg-stone-700 border-stone-200 dark:border-stone-600 text-stone-400 dark:text-stone-400 hover:bg-stone-50 dark:hover:bg-stone-600'}`}
                 >
                   {min}m
                 </button>
@@ -236,7 +236,7 @@ function CreateModal({ onSave, onClose }) {
           {/* Actions */}
           <div className="flex gap-3 pt-1">
             <button type="button" onClick={onClose}
-              className="flex-1 py-2.5 rounded-2xl border border-stone-200 text-stone-500 text-sm hover:bg-stone-50 transition">
+              className="flex-1 py-2.5 rounded-2xl border border-stone-200 dark:border-stone-600 text-stone-500 dark:text-stone-400 text-sm hover:bg-stone-50 dark:hover:bg-stone-700 transition">
               Cancel
             </button>
             <button type="submit"
@@ -264,7 +264,7 @@ function RoutineModal({ routine, hasExistingWins, onStart, onDelete, onClose }) 
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/20 backdrop-blur-sm animate-fade-in">
-      <div className="bg-white rounded-3xl w-full max-w-sm animate-slide-up overflow-hidden">
+      <div className="bg-white dark:bg-stone-800 rounded-3xl w-full max-w-sm animate-slide-up overflow-hidden">
 
         <div className={`px-6 pt-6 pb-4 ${routine.cardCls}`}>
           <div className="flex items-center justify-between mb-3">
@@ -274,22 +274,22 @@ function RoutineModal({ routine, hasExistingWins, onStart, onDelete, onClose }) 
             <div className="flex items-center gap-1">
               {routine.custom && (
                 <button onClick={() => { onDelete(routine.id); onClose() }}
-                  className="w-8 h-8 flex items-center justify-center rounded-xl text-red-300 hover:bg-red-50 hover:text-red-400 transition text-sm"
+                  className="w-8 h-8 flex items-center justify-center rounded-xl text-red-300 hover:bg-red-50 dark:hover:bg-red-900/20 hover:text-red-400 transition text-sm"
                   title="Delete routine"
                 >
                   🗑
                 </button>
               )}
               <button onClick={onClose}
-                className="w-8 h-8 flex items-center justify-center rounded-xl text-stone-400 hover:bg-black/5 transition text-xl leading-none">
+                className="w-8 h-8 flex items-center justify-center rounded-xl text-stone-400 dark:text-stone-500 hover:bg-black/5 dark:hover:bg-white/5 transition text-xl leading-none">
                 ×
               </button>
             </div>
           </div>
-          <p className="font-semibold text-stone-800 text-base">{routine.title}</p>
-          {routine.description && <p className="text-sm text-stone-500 mt-0.5">{routine.description}</p>}
+          <p className="font-semibold text-stone-800 dark:text-stone-100 text-base">{routine.title}</p>
+          {routine.description && <p className="text-sm text-stone-500 dark:text-stone-400 mt-0.5">{routine.description}</p>}
           {routine.custom && (
-            <span className="inline-block mt-2 text-xs bg-white/60 border border-stone-200 text-stone-400 px-2 py-0.5 rounded-full">
+            <span className="inline-block mt-2 text-xs bg-white/60 dark:bg-stone-800/60 border border-stone-200 dark:border-stone-600 text-stone-400 dark:text-stone-500 px-2 py-0.5 rounded-full">
               Your routine
             </span>
           )}
@@ -303,37 +303,37 @@ function RoutineModal({ routine, hasExistingWins, onStart, onDelete, onClose }) 
           )}
 
           <div className="space-y-2">
-            <p className="text-xs text-stone-400 font-medium uppercase tracking-wide">Tasks</p>
+            <p className="text-xs text-stone-400 dark:text-stone-500 font-medium uppercase tracking-wide">Tasks</p>
             {routine.tasks.map((t, i) => (
               <div key={i} className="flex items-start gap-2.5">
-                <span className="mt-0.5 w-4 h-4 flex-shrink-0 rounded-full border border-stone-200 bg-stone-50" />
+                <span className="mt-0.5 w-4 h-4 flex-shrink-0 rounded-full border border-stone-200 dark:border-stone-600 bg-stone-50 dark:bg-stone-700" />
                 <div>
-                  <p className="text-sm text-stone-700 leading-snug">{t.title}</p>
-                  {t.tinyStep && <p className="text-xs text-stone-400 mt-0.5">Start with: {t.tinyStep}</p>}
+                  <p className="text-sm text-stone-700 dark:text-stone-200 leading-snug">{t.title}</p>
+                  {t.tinyStep && <p className="text-xs text-stone-400 dark:text-stone-500 mt-0.5">Start with: {t.tinyStep}</p>}
                 </div>
               </div>
             ))}
           </div>
 
-          <div className="text-xs text-stone-400 flex items-center gap-1.5">
+          <div className="text-xs text-stone-400 dark:text-stone-500 flex items-center gap-1.5">
             <span>⏱</span> Suggested focus: {routine.focusMinutes} min
           </div>
 
-          {routine.microcopy && <p className="text-xs text-stone-400 italic">{routine.microcopy}</p>}
+          {routine.microcopy && <p className="text-xs text-stone-400 dark:text-stone-500 italic">{routine.microcopy}</p>}
         </div>
 
         {confirming ? (
-          <div className="px-6 pb-6 space-y-3 border-t border-stone-100 pt-4">
-            <p className="text-sm text-stone-600 text-center leading-relaxed">
+          <div className="px-6 pb-6 space-y-3 border-t border-stone-100 dark:border-stone-700 pt-4">
+            <p className="text-sm text-stone-600 dark:text-stone-300 text-center leading-relaxed">
               You have existing wins today.<br />
-              <span className="text-stone-400 text-xs">Replace them with this routine?</span>
+              <span className="text-stone-400 dark:text-stone-500 text-xs">Replace them with this routine?</span>
             </p>
             <button onClick={() => onStart(routine.tasks)}
               className="w-full py-3 rounded-2xl bg-sage-500 text-white text-sm font-semibold hover:bg-sage-600 transition">
               Yes, replace my wins
             </button>
             <button onClick={() => setConfirming(false)}
-              className="w-full py-2.5 rounded-2xl border border-stone-200 text-stone-500 text-sm hover:bg-stone-50 transition">
+              className="w-full py-2.5 rounded-2xl border border-stone-200 dark:border-stone-600 text-stone-500 dark:text-stone-400 text-sm hover:bg-stone-50 dark:hover:bg-stone-700 transition">
               Keep my wins
             </button>
           </div>
@@ -344,7 +344,7 @@ function RoutineModal({ routine, hasExistingWins, onStart, onDelete, onClose }) 
               Start this routine
             </button>
             <button onClick={onClose}
-              className="w-full py-2.5 rounded-2xl border border-stone-200 text-stone-500 text-sm hover:bg-stone-50 transition">
+              className="w-full py-2.5 rounded-2xl border border-stone-200 dark:border-stone-600 text-stone-500 dark:text-stone-400 text-sm hover:bg-stone-50 dark:hover:bg-stone-700 transition">
               Close
             </button>
           </div>
@@ -367,27 +367,27 @@ function RoutineCard({ routine, onClick }) {
         </div>
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2 flex-wrap">
-            <p className="font-semibold text-stone-700 text-sm">{routine.title}</p>
+            <p className="font-semibold text-stone-700 dark:text-stone-200 text-sm">{routine.title}</p>
             {routine.custom && (
-              <span className="text-xs text-stone-400 border border-stone-200 bg-white/60 px-1.5 py-0.5 rounded-full">yours</span>
+              <span className="text-xs text-stone-400 dark:text-stone-500 border border-stone-200 dark:border-stone-600 bg-white/60 dark:bg-stone-800/60 px-1.5 py-0.5 rounded-full">yours</span>
             )}
           </div>
-          {routine.description && <p className="text-xs text-stone-400 mt-0.5 leading-relaxed">{routine.description}</p>}
+          {routine.description && <p className="text-xs text-stone-400 dark:text-stone-500 mt-0.5 leading-relaxed">{routine.description}</p>}
         </div>
       </div>
 
       <ul className="space-y-1">
         {routine.tasks.map((t, i) => (
-          <li key={i} className="flex items-center gap-2 text-xs text-stone-500">
-            <span className="w-3.5 h-3.5 rounded-full border border-stone-200 bg-white flex-shrink-0" />
+          <li key={i} className="flex items-center gap-2 text-xs text-stone-500 dark:text-stone-400">
+            <span className="w-3.5 h-3.5 rounded-full border border-stone-200 dark:border-stone-600 bg-white dark:bg-stone-700 flex-shrink-0" />
             {t.title}
           </li>
         ))}
       </ul>
 
       <div className="flex items-center justify-between pt-1">
-        <span className="text-xs text-stone-400">⏱ {routine.focusMinutes} min focus</span>
-        <span className="text-xs font-medium text-sage-600 opacity-0 group-hover:opacity-100 transition-opacity">
+        <span className="text-xs text-stone-400 dark:text-stone-500">⏱ {routine.focusMinutes} min focus</span>
+        <span className="text-xs font-medium text-sage-600 dark:text-sage-400 opacity-0 group-hover:opacity-100 transition-opacity">
           View →
         </span>
       </div>
@@ -413,24 +413,24 @@ export function RoutinesPage({ existingWins = [], customRoutines = [], onStartRo
       <div className="flex flex-col gap-6 p-4 sm:p-6 lg:p-8 max-w-3xl mx-auto w-full">
 
         <header className="space-y-1 pt-2">
-          <p className="text-stone-400 text-sm">🌿 Gentle starting points</p>
+          <p className="text-stone-400 dark:text-stone-500 text-sm">🌿 Gentle starting points</p>
           <div className="flex items-end justify-between flex-wrap gap-3">
             <div>
-              <h1 className="text-3xl sm:text-4xl font-bold text-stone-800 leading-tight tracking-tight">
+              <h1 className="text-3xl sm:text-4xl font-bold text-stone-800 dark:text-stone-100 leading-tight tracking-tight">
                 Routines for difficult days.
               </h1>
-              <p className="text-stone-400 text-sm mt-1">You don't need to plan everything from scratch.</p>
+              <p className="text-stone-400 dark:text-stone-500 text-sm mt-1">You don't need to plan everything from scratch.</p>
             </div>
             <button
               onClick={() => setShowCreate(true)}
-              className="flex items-center gap-2 px-4 py-2 rounded-2xl border border-sage-200 bg-sage-50 text-sage-700 text-sm font-medium hover:bg-sage-100 transition"
+              className="flex items-center gap-2 px-4 py-2 rounded-2xl border border-sage-200 dark:border-sage-800 bg-sage-50 dark:bg-sage-900/30 text-sage-700 dark:text-sage-400 text-sm font-medium hover:bg-sage-100 dark:hover:bg-sage-900/50 transition"
             >
               <span>+</span> Create routine
             </button>
           </div>
         </header>
 
-        <p className="text-xs text-stone-300 italic -mt-2">
+        <p className="text-xs text-stone-300 dark:text-stone-600 italic -mt-2">
           Starting small still counts. You can always adjust the pace.
         </p>
 
@@ -440,7 +440,7 @@ export function RoutinesPage({ existingWins = [], customRoutines = [], onStartRo
           ))}
         </div>
 
-        <p className="text-center text-xs text-stone-300 pb-4">
+        <p className="text-center text-xs text-stone-300 dark:text-stone-600 pb-4">
           Done is enough. Rest is productive too. 🌱
         </p>
       </div>

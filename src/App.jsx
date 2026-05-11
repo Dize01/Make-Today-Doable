@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useAppData } from './hooks/useAppData'
 import { useDarkMode } from './hooks/useDarkMode'
 import { formatDisplayDate, getGreeting, getGreetingEmoji, todayKey } from './utils/dateUtils'
@@ -42,6 +42,46 @@ function MenuIcon() {
   )
 }
 
+const CURRENT_VERSION = 'v1.4'
+
+function ReleaseToast({ onViewNotes, onDismiss }) {
+  return (
+    <div className="fixed bottom-5 right-5 z-50 w-72 bg-white dark:bg-stone-800 rounded-2xl border border-stone-100 dark:border-stone-700 p-4 shadow-card animate-slide-up">
+      <div className="flex items-start gap-3">
+        <span className="text-lg flex-shrink-0">🌱</span>
+        <div className="flex-1 min-w-0">
+          <p className="text-sm font-semibold text-stone-800 dark:text-stone-100">
+            {CURRENT_VERSION} is here
+          </p>
+          <p className="text-xs text-stone-400 dark:text-stone-500 mt-0.5 leading-relaxed">
+            Dark mode, reactivate tasks, and more.
+          </p>
+        </div>
+        <button
+          onClick={onDismiss}
+          className="flex-shrink-0 text-stone-300 dark:text-stone-600 hover:text-stone-500 dark:hover:text-stone-400 transition text-xl leading-none"
+        >
+          ×
+        </button>
+      </div>
+      <div className="flex gap-2 mt-3 pl-8">
+        <button
+          onClick={onViewNotes}
+          className="flex-1 py-1.5 rounded-xl bg-sage-50 dark:bg-sage-900/30 text-sage-700 dark:text-sage-400 text-xs font-medium hover:bg-sage-100 dark:hover:bg-sage-900/50 transition"
+        >
+          See what's new →
+        </button>
+        <button
+          onClick={onDismiss}
+          className="px-3 py-1.5 rounded-xl border border-stone-200 dark:border-stone-600 text-stone-400 dark:text-stone-500 text-xs hover:bg-stone-50 dark:hover:bg-stone-700 transition"
+        >
+          Got it
+        </button>
+      </div>
+    </div>
+  )
+}
+
 export default function App() {
   const [dark, setDark] = useDarkMode()
 
@@ -62,11 +102,19 @@ export default function App() {
     customRoutines,
   } = useAppData()
 
-  const [activeNav,       setActiveNav]       = useState('today')
+  const [activeNav,         setActiveNav]         = useState('today')
   const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false)
-  const [focusWin,        setFocusWin]        = useState(null)
-  const [showBreathing,   setShowBreathing]   = useState(false)
+  const [focusWin,          setFocusWin]          = useState(null)
+  const [showBreathing,     setShowBreathing]     = useState(false)
   const [showNewDayConfirm, setShowNewDayConfirm] = useState(false)
+  const [showReleaseToast,  setShowReleaseToast]  = useState(false)
+
+  useEffect(() => {
+    if (localStorage.getItem('seenVersion') !== CURRENT_VERSION) {
+      const t = setTimeout(() => setShowReleaseToast(true), 1200)
+      return () => clearTimeout(t)
+    }
+  }, [])
 
   function handleStartFocus(win) {
     setFocusWin(win)
@@ -90,6 +138,17 @@ export default function App() {
 
   function handleNewDay() {
     setShowNewDayConfirm(true)
+  }
+
+  function handleDismissRelease() {
+    localStorage.setItem('seenVersion', CURRENT_VERSION)
+    setShowReleaseToast(false)
+  }
+
+  function handleViewRelease() {
+    setActiveNav('release')
+    localStorage.setItem('seenVersion', CURRENT_VERSION)
+    setShowReleaseToast(false)
   }
 
   return (
@@ -225,6 +284,10 @@ export default function App() {
 
       {showBreathing && (
         <BreathingOverlay onClose={() => setShowBreathing(false)} />
+      )}
+
+      {showReleaseToast && (
+        <ReleaseToast onViewNotes={handleViewRelease} onDismiss={handleDismissRelease} />
       )}
     </div>
   )

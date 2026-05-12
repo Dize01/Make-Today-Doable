@@ -1,6 +1,7 @@
 import { useState, useRef } from 'react'
 import { WinCard, EmptyWinSlot } from './WinCard'
 import { AddWinModal } from './AddWinModal'
+import { playTaskAdded } from '../utils/sounds'
 
 export function WinsSection({ wins, startedCount, onStart, onComplete, onReactivate, onAdd, onEdit, onDelete, onFocus }) {
   const [showModal,   setShowModal]   = useState(false)
@@ -40,6 +41,7 @@ export function WinsSection({ wins, startedCount, onStart, onComplete, onReactiv
       onEdit(editingWin.id, { title, tinyStep })
     } else {
       onAdd({ title, tinyStep })
+      playTaskAdded()
       if (highlightTimer.current) clearTimeout(highlightTimer.current)
       setHighlightLast(true)
       highlightTimer.current = setTimeout(() => setHighlightLast(false), 1800)

@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { useAppData } from './hooks/useAppData'
 import { useDarkMode } from './hooks/useDarkMode'
 import { formatDisplayDate, getGreeting, getGreetingEmoji, todayKey } from './utils/dateUtils'
+import { playWinComplete } from './utils/sounds'
 
 import { Sidebar }             from './components/Sidebar'
 import { EnergySelector }      from './components/EnergySelector'
@@ -42,7 +43,7 @@ function MenuIcon() {
   )
 }
 
-const CURRENT_VERSION = 'v1.4'
+const CURRENT_VERSION = 'v1.5'
 
 function ReleaseToast({ onViewNotes, onDismiss }) {
   return (
@@ -54,7 +55,7 @@ function ReleaseToast({ onViewNotes, onDismiss }) {
             {CURRENT_VERSION} is here
           </p>
           <p className="text-xs text-stone-400 dark:text-stone-500 mt-0.5 leading-relaxed">
-            Dark mode, reactivate tasks, and more.
+            Gentle sound feedback for tasks and focus.
           </p>
         </div>
         <button
@@ -126,6 +127,7 @@ export default function App() {
 
   function handleWinComplete(id) {
     updateWin(id, { completed: true })
+    playWinComplete()
   }
 
   function handleWinReactivate(id) {

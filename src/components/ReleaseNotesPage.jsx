@@ -1,5 +1,16 @@
 const RELEASES = [
   {
+    version: 'v1.5',
+    date: 'May 2026',
+    label: 'Gentle Sound Feedback',
+    changes: [
+      'Soft two-note chime when you complete a win — a small reward for a real effort',
+      'Quiet ping when a task is added — gentle confirmation, nothing jarring',
+      'Calming three-note chime when your focus timer finishes',
+      'All sounds use the Web Audio API — no files, no loading, works offline',
+    ],
+  },
+  {
     version: 'v1.4',
     date: 'May 2026',
     label: 'Dark Mode & Release Notes',

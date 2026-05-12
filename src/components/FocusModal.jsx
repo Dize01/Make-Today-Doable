@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
+import { playTimerDone } from '../utils/sounds'
 
 const TIMER_OPTIONS = [5, 10, 15, 25]
 
@@ -40,6 +41,7 @@ export function FocusModal({ win, onClose }) {
           clearInterval(intervalRef.current)
           setRunning(false)
           setDone(true)
+          playTimerDone()
           return 0
         }
         return s - 1
